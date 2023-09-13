@@ -43,8 +43,8 @@ public class AlumnoData {
             }
             rs.close();
             ps.close();
-        } catch (SQLException ex) {
-            mensaje("El alumno " + alumno.getNombre() + " " + alumno.getApellido() + " no se pudo cargar.");
+        } catch (SQLException ex) {     // VER QUE HACE PARA SABER QUE MENSAJE MOSTRAR  -  no se encuentra la tabla en la BD
+            mensaje("El alumno " + alumno.getNombre() + " " + alumno.getApellido() + " no se pudo cargar. **66** ");
         }
     }
 
@@ -62,7 +62,7 @@ public class AlumnoData {
             ps.executeUpdate();
 
             ps.close();
-        } catch (SQLException ex) {
+        } catch (SQLException ex) {   // VER QUE HACE PARA SABER QUE MENSAJE MOSTRAR
             mensaje("El alumno " + alumno.getNombre() + " " + alumno.getApellido() + " no se pudo actualizar.");
         }
     }
