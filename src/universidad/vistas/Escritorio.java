@@ -5,6 +5,8 @@
  */
 package universidad.vistas;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Alesio
@@ -167,10 +169,25 @@ public class Escritorio extends javax.swing.JFrame {
 
     private void jmCAlumXMatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmCAlumXMatActionPerformed
         // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        VistaConAlumXMat va = new VistaConAlumXMat();
+        va.setVisible(true);
+        escritorio.add(va);
+        escritorio.moveToFront(va);
     }//GEN-LAST:event_jmCAlumXMatActionPerformed
 
     private void jmSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmSalirActionPerformed
         // TODO add your handling code here:
+        int option = JOptionPane.showConfirmDialog(
+                        escritorio,
+                        "¿Estás seguro de que quieres cerrar la aplicación?",
+                        "Confirmación de cierre",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE);
+                if (option == JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                }
     }//GEN-LAST:event_jmSalirActionPerformed
 
     /**
