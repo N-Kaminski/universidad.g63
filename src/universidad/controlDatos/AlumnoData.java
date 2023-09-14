@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import universidad.g63.Utileria;
 
 /**
  * @author Nicolas Kaminski
@@ -39,12 +40,12 @@ public class AlumnoData {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 alumno.setIdAlumno(rs.getInt("idAlumno"));
-                mensaje("El alumno " + alumno.getNombre() + " " + alumno.getApellido() + " se cargo corectamente.");
+                Utileria.mensaje("El alumno " + alumno.getNombre() + " " + alumno.getApellido() + " se cargo corectamente.");
             }
             rs.close();
             ps.close();
         } catch (SQLException ex) {     // VER QUE HACE PARA SABER QUE MENSAJE MOSTRAR  -  no se encuentra la tabla en la BD
-            mensaje("El alumno " + alumno.getNombre() + " " + alumno.getApellido() + " no se pudo cargar. **66** ");
+            Utileria.mensaje("El alumno " + alumno.getNombre() + " " + alumno.getApellido() + " no se pudo cargar. **66** ");
         }
     }
 
@@ -63,20 +64,20 @@ public class AlumnoData {
 
             ps.close();
         } catch (SQLException ex) {   // VER QUE HACE PARA SABER QUE MENSAJE MOSTRAR
-            mensaje("El alumno " + alumno.getNombre() + " " + alumno.getApellido() + " no se pudo actualizar.");
+            Utileria.mensaje("El alumno " + alumno.getNombre() + " " + alumno.getApellido() + " no se pudo actualizar.");
         }
     }
-    
-    public Alumno buscarAlumno (int idAlumno){
+
+    public Alumno buscarAlumno(int idAlumno) {
         Alumno alumno = null;
         String buscarAlumno = "SELECT  dni, apellido, nombre, fechaNac, estado FROM alumno WHERE idAlumno=?";
         PreparedStatement ps;
-        try{
+        try {
             ps = conec.prepareStatement(buscarAlumno);
             ps.setInt(1, idAlumno);
             ResultSet rs = ps.executeQuery();
-            
-            if (rs.next()){
+
+            if (rs.next()) {
                 alumno = new Alumno();
                 alumno.setIdAlumno(rs.getInt("idAlumno"));
                 alumno.setDni(rs.getInt("dni"));
@@ -85,26 +86,26 @@ public class AlumnoData {
                 alumno.setFechaNac(rs.getDate("fechaNac").toLocalDate());
                 alumno.setEstado(rs.getBoolean("estado"));
             } else {
-                mensaje ("El alumno no existe");
+                Utileria.mensaje("El alumno no existe");
             }
-             ps.close();
+            ps.close();
         } catch (SQLException ex) {
-           mensaje("El alumno no se pudo cargar.");
-        } 
+            Utileria.mensaje("El alumno no se pudo cargar.");
+        }
         return alumno;
-        
+
     }
-    
-    public Alumno buscarAlumnoPorDni (int dni){
+
+    public Alumno buscarAlumnoPorDni(int dni) {
         Alumno alumno = null;
         String buscarDni = "SELECT  idAlumno, dni, apellido, nombre, fechaNac FROM alumno WHERE dni=? AND estado =1";
         PreparedStatement ps;
-        try{
+        try {
             ps = conec.prepareStatement(buscarDni);
             ps.setInt(1, dni);
             ResultSet rs = ps.executeQuery();
-            
-            if (rs.next()){
+
+            if (rs.next()) {
                 alumno = new Alumno();
                 alumno.setIdAlumno(rs.getInt("idAlumno"));
                 alumno.setDni(rs.getInt("dni"));
@@ -113,15 +114,15 @@ public class AlumnoData {
                 alumno.setFechaNac(rs.getDate("fechaNac").toLocalDate());
                 alumno.setEstado(true); // VER SI ES IGUAL QUE PONERLO COMO EN EL ANTERIOR METODO
             } else {
-                mensaje ("El alumno no existe");
+                Utileria.mensaje("El alumno no existe");
             }
-             ps.close();
+            ps.close();
         } catch (SQLException ex) {
-           mensaje("El DNI del alumno no se pudo encontrar.");
-        } 
+            Utileria.mensaje("El DNI del alumno no se pudo encontrar.");
+        }
         return alumno;
     }
-    
+
     public ArrayList<Alumno> obtenerAlumnos() {
         ArrayList<Alumno> lista = new ArrayList<>();
         try (PreparedStatement ps = conec.prepareStatement("SELECT idAlumno, dni, apellido, nombre, fechaNacimiento FROM alumno WHERE estado =1")) {
@@ -137,35 +138,31 @@ public class AlumnoData {
                 }
                 ps.close();
             } catch (SQLException ex) {
-                mensaje("Error al obtener la lista de las patologias en la BD: " + ex.getMessage());
+                Utileria.mensaje("Error al obtener la lista de las patologias en la BD: " + ex.getMessage());
             }
         } catch (SQLException ex) {
-            mensaje("Error al obtener la lista de las patologias en la BD: " + ex.getMessage());
+            Utileria.mensaje("Error al obtener la lista de las patologias en la BD: " + ex.getMessage());
         }
         //Collections.sort(lista);
         return lista;
     }
-    
-      public void eliminarAlumno(int id) {
+
+    public void eliminarAlumno(int id) {
         String eliminarAlumno = "UPDATE alumno SET  estado = 0 WHERE idAlumno =?";
 
         try {
             PreparedStatement ps = conec.prepareStatement(eliminarAlumno);
             ps.setInt(1, id);
-           int fila = ps.executeUpdate();
-           
-           if (fila ==1){
-               JOptionPane.showMessageDialog(null, "Se dio de baja el alumno");
-           }
+            int fila = ps.executeUpdate();
+
+            if (fila == 1) {
+                JOptionPane.showMessageDialog(null, "Se dio de baja el alumno");
+            }
 
             ps.close();
         } catch (SQLException ex) {
-            mensaje("El alumno  no se pudo dar de baja.");
+            Utileria.mensaje("El alumno  no se pudo dar de baja.");
         }
-    }
-    
-    private void mensaje(String mensaje) {
-        JOptionPane.showMessageDialog(null, mensaje);
     }
 
 }  // LLAVE DE CLASE

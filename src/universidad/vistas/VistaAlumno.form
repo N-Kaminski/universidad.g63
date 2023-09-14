@@ -22,52 +22,46 @@
           <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="jLabel5" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLabel6" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLabel4" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="jbLimpiar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jbEliminar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="17" max="32767" attributes="0"/>
+                      <Component id="jbGuardar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jbSalir" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="jSeparator2" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="jbCargar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jbEliminar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="13" max="32767" attributes="0"/>
-                              <Component id="jbGuardar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jbSalir" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="jLabel3" max="32767" attributes="0"/>
+                              <Component id="jLabel2" pref="96" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="jSeparator2" alignment="0" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="jLabel3" max="32767" attributes="0"/>
-                                  <Component id="jLabel2" pref="96" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="jtDocumento" min="-2" pref="100" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="jbBuscar" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="jDateChooser1" alignment="0" max="32767" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Component id="jtNombre" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="jtApellido" alignment="0" max="32767" attributes="0"/>
-                              </Group>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="jLabel5" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jLabel6" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jLabel4" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="45" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jrEstado" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="jtDocumento" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="jbBuscar" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="jDateChooser1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jtNombre" alignment="1" max="32767" attributes="0"/>
+                              <Component id="jtApellido" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
+              <EmptySpace pref="37" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -94,18 +88,18 @@
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                  <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jrEstado" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                   <Component id="jDateChooser1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jbCargar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jbLimpiar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jbEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jbSalir" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jbGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -170,12 +164,12 @@
         <Property name="text" type="java.lang.String" value="Fecha de Nac:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jbCargar">
+    <Component class="javax.swing.JButton" name="jbLimpiar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cargar"/>
+        <Property name="text" type="java.lang.String" value="Limpiar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbCargarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbLimpiarActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbEliminar">
@@ -218,9 +212,13 @@
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBox1">
-    </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator2">
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="jrEstado">
+      <Properties>
+        <Property name="selected" type="boolean" value="true"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
