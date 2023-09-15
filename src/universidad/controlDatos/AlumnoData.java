@@ -6,11 +6,11 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.mariadb.jdbc.Statement;
 import universidad.g63.Utileria;
 
 /**
@@ -24,47 +24,42 @@ public class AlumnoData {
         conec = Conexion.getConexion();
     }
 
-    public void cargarAlumno(Alumno alumno) {
-        String cargarAlumno = "INSERT INTO alumno (dni, apellido, nombre, fechaNac, estado) VALUES (?, ?, ?, ?, ?)";
-
+    public void guardarAlumno(Alumno alumno) {
+        String ssql = "INSERT INTO alumno (dni, apellido, nombre, fechaNac, estado) VALUES (?, ?, ?, ?, ?)";
         try {
-            PreparedStatement ps = conec.prepareStatement(cargarAlumno, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = conec.prepareStatement(ssql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, alumno.getDni());
             ps.setString(2, alumno.getApellido());
             ps.setString(3, alumno.getNombre());
-            // ps.setObject(4, fechaNac);
             ps.setDate(4, Date.valueOf(alumno.getFechaNac()));
             ps.setBoolean(5, alumno.isEstado());
             ps.executeUpdate();
-
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
-                alumno.setIdAlumno(rs.getInt("idAlumno"));
-                Utileria.mensaje("El alumno " + alumno.getNombre() + " " + alumno.getApellido() + " se cargo corectamente.");
+                alumno.setIdAlumno(rs.getInt(1));
             }
             rs.close();
             ps.close();
-        } catch (SQLException ex) {     // VER QUE HACE PARA SABER QUE MENSAJE MOSTRAR  -  no se encuentra la tabla en la BD
-            Utileria.mensaje("El alumno " + alumno.getNombre() + " " + alumno.getApellido() + " no se pudo cargar. **66** ");
+            Utileria.mensaje("Se cargo el alumno correctamente");
+        } catch (SQLException ex) {
+            Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public void actualizarAlumno(Alumno alumno) {
-        String actualizarAlumno = "UPDATE alumno SET dni=?, apellido=?, nombre=?, fechaNac? WHERE idAlumno=?";
-
+    public void modificarAlumno(Alumno alumno) {
+        String ssql = "UPDATE alumno SET dni=?, apellido=?, nombre=?, fechaNac=?, estado=? WHERE idAlumno=?";
         try {
-            PreparedStatement ps = conec.prepareStatement(actualizarAlumno);
+            PreparedStatement ps = conec.prepareStatement(ssql);
             ps.setInt(1, alumno.getDni());
             ps.setString(2, alumno.getApellido());
             ps.setString(3, alumno.getNombre());
-            // ps.setObject(4, fechaNac);
             ps.setDate(4, Date.valueOf(alumno.getFechaNac()));
-            ps.setInt(5, alumno.getIdAlumno());
+            ps.setBoolean(5, alumno.isEstado());
+            ps.setInt(6, alumno.getIdAlumno());
             ps.executeUpdate();
-
             ps.close();
-        } catch (SQLException ex) {   // VER QUE HACE PARA SABER QUE MENSAJE MOSTRAR
-            Utileria.mensaje("El alumno " + alumno.getNombre() + " " + alumno.getApellido() + " no se pudo actualizar.");
+        } catch (SQLException ex) {
+            Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -90,7 +85,7 @@ public class AlumnoData {
             }
             ps.close();
         } catch (SQLException ex) {
-            Utileria.mensaje("El alumno no se pudo cargar.");
+            Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
         }
         return alumno;
 
@@ -98,7 +93,8 @@ public class AlumnoData {
 
     public Alumno buscarAlumnoPorDni(int dni) {
         Alumno alumno = null;
-        String buscarDni = "SELECT  idAlumno, dni, apellido, nombre, fechaNac FROM alumno WHERE dni=? AND estado =1";
+        //String buscarDni = "SELECT  idAlumno, dni, apellido, nombre, fechaNac FROM alumno WHERE dni=? AND estado =1";
+        String buscarDni = "SELECT  idAlumno, dni, apellido, nombre, fechaNac, estado FROM alumno WHERE dni=?";
         PreparedStatement ps;
         try {
             ps = conec.prepareStatement(buscarDni);
@@ -110,15 +106,16 @@ public class AlumnoData {
                 alumno.setIdAlumno(rs.getInt("idAlumno"));
                 alumno.setDni(rs.getInt("dni"));
                 alumno.setApellido(rs.getString("apellido"));
-                alumno.setApellido(rs.getString("nombre"));
+                alumno.setNombre(rs.getString("nombre"));
                 alumno.setFechaNac(rs.getDate("fechaNac").toLocalDate());
-                alumno.setEstado(true); // VER SI ES IGUAL QUE PONERLO COMO EN EL ANTERIOR METODO
+                //alumno.setEstado(true); // VER SI ES IGUAL QUE PONERLO COMO EN EL ANTERIOR METODO
+                alumno.setEstado(rs.getBoolean("estado"));
             } else {
-                Utileria.mensaje("El alumno no existe");
+                Utileria.mensaje("No se encontro un alumno con ese numero de documento");
             }
             ps.close();
         } catch (SQLException ex) {
-            Utileria.mensaje("El DNI del alumno no se pudo encontrar.");
+            Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
         }
         return alumno;
     }
@@ -138,10 +135,10 @@ public class AlumnoData {
                 }
                 ps.close();
             } catch (SQLException ex) {
-                Utileria.mensaje("Error al obtener la lista de las patologias en la BD: " + ex.getMessage());
+                Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
             }
         } catch (SQLException ex) {
-            Utileria.mensaje("Error al obtener la lista de las patologias en la BD: " + ex.getMessage());
+            Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
         }
         //Collections.sort(lista);
         return lista;
@@ -155,13 +152,12 @@ public class AlumnoData {
             ps.setInt(1, id);
             int fila = ps.executeUpdate();
 
-            if (fila == 1) {
-                JOptionPane.showMessageDialog(null, "Se dio de baja el alumno");
-            }
-
+//            if (fila == 1) {
+//                JOptionPane.showMessageDialog(null, "Se dio de baja el alumno");
+//            }
             ps.close();
         } catch (SQLException ex) {
-            Utileria.mensaje("El alumno  no se pudo dar de baja.");
+            Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

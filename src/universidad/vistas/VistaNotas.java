@@ -5,6 +5,7 @@
  */
 package universidad.vistas;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -12,8 +13,8 @@ import javax.swing.table.DefaultTableModel;
  * @author Alesio
  */
 public class VistaNotas extends javax.swing.JInternalFrame {
-    
-        private DefaultTableModel modelo = new DefaultTableModel() {
+
+    private DefaultTableModel modelo = new DefaultTableModel() {
         public boolean isCellEditable(int f, int c) {
             return false;
         }
@@ -126,8 +127,11 @@ public class VistaNotas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
+        Object[] op = {"Aceptar", "Cancelar"};
+        int i = JOptionPane.showOptionDialog(this, "Desea salir?", title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, frameIcon, op, "Aceptar");
+        if (i == JOptionPane.YES_OPTION) {
+            this.dispose();
+        }
     }//GEN-LAST:event_jbSalirActionPerformed
 
 
@@ -142,10 +146,10 @@ public class VistaNotas extends javax.swing.JInternalFrame {
     private javax.swing.JTable jtNotas;
     // End of variables declaration//GEN-END:variables
 
-private void armarCabecera(){
-    modelo.addColumn("Codigo");
-    modelo.addColumn("Nombre");
-    modelo.addColumn("Nota");
-    jtNotas.setModel(modelo);
-}
+    private void armarCabecera() {
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Nota");
+        jtNotas.setModel(modelo);
+    }
 }

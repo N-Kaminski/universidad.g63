@@ -5,7 +5,9 @@
  */
 package universidad.vistas;
 
+import java.awt.Dimension;
 import javax.swing.JOptionPane;
+import universidad.g63.Utileria;
 
 /**
  *
@@ -20,6 +22,8 @@ public class Escritorio extends javax.swing.JFrame {
         initComponents();
         this.setTitle("Universidad.G63");
         this.setLocationRelativeTo(null);
+        Dimension desktopSize = escritorio.getSize();
+
     }
 
     /**
@@ -128,43 +132,46 @@ public class Escritorio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jmFormAlumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmFormAlumActionPerformed
-        // TODO add your handling code here:
         escritorio.removeAll();
         escritorio.repaint();
-        VistaAlumno va = new VistaAlumno();
+        VistaAlumno2 va = new VistaAlumno2();
         va.setVisible(true);
         escritorio.add(va);
         escritorio.moveToFront(va);
+        Utileria.centrarInternalFrame(escritorio, va);
     }//GEN-LAST:event_jmFormAlumActionPerformed
 
     private void jmFormMatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmFormMatActionPerformed
         // TODO add your handling code here:
-          escritorio.removeAll();
+        escritorio.removeAll();
         escritorio.repaint();
         VistaMateria va = new VistaMateria();
         va.setVisible(true);
         escritorio.add(va);
         escritorio.moveToFront(va);
+        Utileria.centrarInternalFrame(escritorio, va);
     }//GEN-LAST:event_jmFormMatActionPerformed
 
     private void jmManejoInsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmManejoInsActionPerformed
         // TODO add your handling code here:
-         escritorio.removeAll();
+        escritorio.removeAll();
         escritorio.repaint();
         VistaInscripciones va = new VistaInscripciones();
         va.setVisible(true);
         escritorio.add(va);
         escritorio.moveToFront(va);
+        Utileria.centrarInternalFrame(escritorio, va);
     }//GEN-LAST:event_jmManejoInsActionPerformed
 
     private void jmManipNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmManipNotasActionPerformed
         // TODO add your handling code here:
-         escritorio.removeAll();
+        escritorio.removeAll();
         escritorio.repaint();
         VistaNotas va = new VistaNotas();
         va.setVisible(true);
         escritorio.add(va);
         escritorio.moveToFront(va);
+        Utileria.centrarInternalFrame(escritorio, va);
     }//GEN-LAST:event_jmManipNotasActionPerformed
 
     private void jmCAlumXMatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmCAlumXMatActionPerformed
@@ -175,19 +182,20 @@ public class Escritorio extends javax.swing.JFrame {
         va.setVisible(true);
         escritorio.add(va);
         escritorio.moveToFront(va);
+        Utileria.centrarInternalFrame(escritorio, va);
     }//GEN-LAST:event_jmCAlumXMatActionPerformed
 
     private void jmSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmSalirActionPerformed
         // TODO add your handling code here:
         int option = JOptionPane.showConfirmDialog(
-                        escritorio,
-                        "¿Estás seguro de que quieres cerrar la aplicación?",
-                        "Confirmación de cierre",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE);
-                if (option == JOptionPane.YES_OPTION) {
-                    System.exit(0);
-                }
+                escritorio,
+                "¿Estás seguro de que quieres cerrar la aplicación?",
+                "Confirmación de cierre",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+        if (option == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
     }//GEN-LAST:event_jmSalirActionPerformed
 
     /**

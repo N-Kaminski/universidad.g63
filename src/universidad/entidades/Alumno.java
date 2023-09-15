@@ -1,13 +1,12 @@
-
 package universidad.entidades;
-
 
 import java.time.LocalDate;
 
-/** @author Nicolas Kaminski */
-
+/**
+ * @author Nicolas Kaminski
+ */
 public class Alumno {
-    
+
     private int idAlumno;
     private int dni;
     private String apellido;
@@ -26,8 +25,8 @@ public class Alumno {
 
     public Alumno() {
     }
-    
-        public Alumno( int dni, String apellido, String nombre, LocalDate fechaNac, boolean estado) {
+
+    public Alumno(int dni, String apellido, String nombre, LocalDate fechaNac, boolean estado) {
         this.dni = dni;
         this.apellido = apellido;
         this.nombre = nombre;
@@ -83,5 +82,13 @@ public class Alumno {
         this.estado = estado;
     }
 
+    @Override
+    public String toString() {
+        return "Alumno{" + "idAlumno=" + idAlumno + ", dni=" + dni + ", apellido=" + apellido + ", nombre=" + nombre + ", fechaNac=" + fechaNac + ", estado=" + estado + '}';
+    }
+
+    public String stringEliminar() {
+        return apellido + " " + nombre + " con dni " + dni;
+    }
 
 }  // LLAVE DE CLASE
