@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import universidad.g63.Utileria;
 
 /**
  * @author Nicolas Kaminski
@@ -40,12 +41,12 @@ public class InscripcionData {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 inscripcion.setIdInscripto(rs.getInt(1));
-                mensaje("La inscripcion se cargo corectamente.");
+                Utileria.mensaje("La inscripcion se cargo corectamente.");
             }
             rs.close();
             ps.close();
         } catch (SQLException ex) {
-            mensaje("La inscripcion NO se cargo corectamente.  **55**");
+            Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -89,7 +90,7 @@ public class InscripcionData {
 
             ps.close();
         } catch (SQLException ex) {
-            mensaje("Fallo de conexion a la tabla");
+            Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -106,34 +107,30 @@ public class InscripcionData {
 
             ps.close();
         } catch (SQLException ex) {
-            mensaje("Fallo de conexion a la tabla.07");
+            Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     //  INCOMPLETO
     public List<Alumno> obtenerAlumnosPorMateria(int idMateria) {
         ArrayList<Alumno> lista = new ArrayList<>();
-            String obtenerAlumno = "SELECT  alumno.dni, alumno.apellido, alumno.nombre FROM inscripcion JOIN "
-                    + "alumno ON (inscripcion.idAlumno=alumno.idAlumno) Where idMateria=?";
-        try {           
+        String obtenerAlumno = "SELECT  alumno.dni, alumno.apellido, alumno.nombre FROM inscripcion JOIN "
+                + "alumno ON (inscripcion.idAlumno=alumno.idAlumno) Where idMateria=?";
+        try {
             PreparedStatement ps = conec.prepareStatement(obtenerAlumno);
             ps.setInt(1, idMateria);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-               //     lista.add(new Alumno(rs.getInt("dni"), rs.getString("apellido"), rs.getString("nombre"));
-                }
-                ps.close();
-            
-            
-            
+                //     lista.add(new Alumno(rs.getInt("dni"), rs.getString("apellido"), rs.getString("nombre"));
+            }
+            ps.close();
+
         } catch (SQLException ex) {
-           mensaje("Fallo de conexion a la tabla.08");
+            Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
         }
         return lista;
     }
 
-    private void mensaje(String mensaje) {
-        JOptionPane.showMessageDialog(null, mensaje);
-    }
+  
 
 }  // LLAVE DE CLASE
