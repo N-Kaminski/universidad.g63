@@ -47,7 +47,7 @@ public class MateriaData {
         }
     }
 
-    public void actualizarMateria(Materia materia) {
+    public void modificarMateria(Materia materia) {
         String actualizarMateria = "UPDATE materia SET nombre=?, año=?, estado=? WHERE idMateria=?";
 
         try {
@@ -66,7 +66,7 @@ public class MateriaData {
 
     public Materia buscarMateria(int idMateria) {
         Materia materia = null;
-        String buscarMateria = "SELECT  nombre, año, estado FROM materia WHERE idMateria=?";
+        String buscarMateria = "SELECT  idMateria, nombre, año, estado FROM materia WHERE idMateria=?";
         PreparedStatement ps;
         try {
             ps = conec.prepareStatement(buscarMateria);
@@ -76,6 +76,32 @@ public class MateriaData {
             if (rs.next()) {
                 materia = new Materia();
                 materia.setIdMateria(rs.getInt("idMateria"));
+                materia.setNombre(rs.getString("nombre"));
+                materia.setAño(rs.getInt("año"));
+                materia.setEstado(rs.getBoolean("estado")); // ver si en lugar de "estado" va= materia.setEstado(true)
+            } else {
+                Utileria.mensaje("La materia no existe");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return materia;
+    }
+
+    public Materia buscarMateria(String nombre) {
+        Materia materia = null;
+        String bm = "SELECT  idMateria, nombre, año, estado FROM materia WHERE nombre=?";
+        PreparedStatement ps;
+        try {
+            ps = conec.prepareStatement(bm);
+            ps.setString(1, nombre);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                materia = new Materia();
+                materia.setIdMateria(rs.getInt("idMateria"));
+                materia.setNombre(rs.getString("nombre"));
                 materia.setAño(rs.getInt("año"));
                 materia.setEstado(rs.getBoolean("estado")); // ver si en lugar de "estado" va= materia.setEstado(true)
             } else {
@@ -95,11 +121,11 @@ public class MateriaData {
             PreparedStatement ps = conec.prepareStatement(eliminarMateria);
             ps.setInt(1, id);
             int fila = ps.executeUpdate();
-
+/*
             if (fila == 1) {
                 JOptionPane.showMessageDialog(null, "Se dio de baja la materia");
             }
-
+*/
             ps.close();
         } catch (SQLException ex) {
             Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
