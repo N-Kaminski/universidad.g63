@@ -57,8 +57,6 @@
                               <Component id="jbCargar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jbModificar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jbEliminar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="jbSalir" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -122,7 +120,6 @@
                   <Component id="jbCargar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jbSalir" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jbModificar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jbEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="15" max="32767" attributes="0"/>
           </Group>
@@ -179,6 +176,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="jrEstado">
+      <Properties>
+        <Property name="selected" type="boolean" value="true"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
@@ -205,14 +205,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbSalirActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jbEliminar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Eliminar"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbEliminarActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="jbModificar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Modificar"/>
@@ -223,6 +215,7 @@
     </Component>
     <Component class="javax.swing.JRadioButton" name="jrNueva">
       <Properties>
+        <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="Nueva"/>
       </Properties>
       <Events>

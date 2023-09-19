@@ -145,7 +145,7 @@ public class Escritorio extends javax.swing.JFrame {
         // TODO add your handling code here:
         escritorio.removeAll();
         escritorio.repaint();
-        VistaMateria2 va = new VistaMateria2();
+        VistaMateria3 va = new VistaMateria3();
         va.setVisible(true);
         escritorio.add(va);
         escritorio.moveToFront(va);

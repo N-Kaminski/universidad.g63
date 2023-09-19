@@ -231,7 +231,8 @@ public class VistaAlumno2 extends javax.swing.JInternalFrame {
                 alum.setDni(Integer.parseInt(jtDocumento.getText()));
                 alum.setApellido(jtApellido.getText());
                 alum.setNombre(jtNombre.getText());
-                alum.setEstado(true);
+                alum.setEstado(jrEstado.isSelected());
+                // mater.setEstado(jrEstado.isSelected());
                 alum.setFechaNac(Utileria.convertirLocalDate(jdFechaNac.getDate()));
                 adata.modificarAlumno(alum);
                 Utileria.mensaje("Alumno modificado exitosamente");

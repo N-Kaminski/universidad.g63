@@ -6,6 +6,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
+import java.sql.SQLSyntaxErrorException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,12 +38,16 @@ public class MateriaData {
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
+
             if (rs.next()) {
                 materia.setIdMateria(rs.getInt(1));
-                Utileria.mensaje("La materia " + materia.getNombre() + " " + " se cargo corectamente.");
+                Utileria.mensaje("Materia cargada");
+//                Utileria.mensaje("La materia " + materia.getNombre() + " " + " se cargo corectamente.");
             }
             rs.close();
             ps.close();
+        } catch (SQLIntegrityConstraintViolationException ex) {
+            Utileria.mensaje("Ya existe una materia con ese nombre");
         } catch (SQLException ex) {
             Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -80,7 +86,8 @@ public class MateriaData {
                 materia.setAño(rs.getInt("año"));
                 materia.setEstado(rs.getBoolean("estado")); // ver si en lugar de "estado" va= materia.setEstado(true)
             } else {
-                Utileria.mensaje("La materia no existe");
+                Utileria.mensaje("La materia no existe con ese codigo");
+
             }
             ps.close();
         } catch (SQLException ex) {
@@ -114,18 +121,66 @@ public class MateriaData {
         return materia;
     }
 
+    public Materia buscarMateria(Materia mat) {
+        String bm = "";
+        String aux = "";
+        if (mat.getIdMateria() != 0) {
+            bm = "SELECT  idMateria, nombre, año, estado FROM materia WHERE idMateria=?";
+            aux = "" + mat.getIdMateria();
+        } else if (!mat.getNombre().equals("")) {
+            bm = "SELECT  idMateria, nombre, año, estado FROM materia WHERE nombre=?";
+            aux = mat.getNombre();
+        }
+        PreparedStatement ps;
+        try {
+            ps = conec.prepareStatement(bm);
+            ps.setString(1, aux);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                mat.setIdMateria(rs.getInt("idMateria"));
+                mat.setNombre(rs.getString("nombre"));
+                mat.setAño(rs.getInt("año"));
+                mat.setEstado(rs.getBoolean("estado"));
+            } else {
+                bm = "SELECT  idMateria, nombre, año, estado FROM materia WHERE nombre=?";
+                aux = mat.getNombre();
+                try {
+                    ps = conec.prepareStatement(bm);
+                    ps.setString(1, aux);
+                    rs = ps.executeQuery();
+                    if (rs.next()) {
+                        mat.setIdMateria(rs.getInt("idMateria"));
+                        mat.setNombre(rs.getString("nombre"));
+                        mat.setAño(rs.getInt("año"));
+                        mat.setEstado(rs.getBoolean("estado"));
+                    } else {
+                        Utileria.mensaje("La materia no existe con ese codigo");
+                        mat.setIdMateria(0);
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            ps.close();
+        } catch (SQLSyntaxErrorException ex) {
+            Utileria.mensaje("No existe materia con codigo '0'");
+        } catch (SQLException ex) {
+            Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return mat;
+    }
+
     public void eliminarMateria(int id) {
         String eliminarMateria = "UPDATE materia SET  estado = 0 WHERE idMateria =?";
-
         try {
             PreparedStatement ps = conec.prepareStatement(eliminarMateria);
             ps.setInt(1, id);
             int fila = ps.executeUpdate();
-/*
+            /*
             if (fila == 1) {
                 JOptionPane.showMessageDialog(null, "Se dio de baja la materia");
             }
-*/
+             */
             ps.close();
         } catch (SQLException ex) {
             Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);

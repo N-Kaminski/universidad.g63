@@ -16,11 +16,10 @@ import universidad.g63.Utileria;
  */
 public class VistaMateria3 extends javax.swing.JInternalFrame {
 
-    MateriaData md = new MateriaData();
-
+    // MateriaData md = new MateriaData();
     public VistaMateria3() {
         initComponents();
-
+        defaultNueva();
     }
 
     @SuppressWarnings("unchecked")
@@ -40,7 +39,6 @@ public class VistaMateria3 extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jbCargar = new javax.swing.JButton();
         jbSalir = new javax.swing.JButton();
-        jbEliminar = new javax.swing.JButton();
         jbModificar = new javax.swing.JButton();
         jrNueva = new javax.swing.JRadioButton();
         jrModificar = new javax.swing.JRadioButton();
@@ -64,6 +62,8 @@ public class VistaMateria3 extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jLabel4.setText("Estado:");
 
+        jrEstado.setSelected(true);
+
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Materia");
@@ -82,13 +82,6 @@ public class VistaMateria3 extends javax.swing.JInternalFrame {
             }
         });
 
-        jbEliminar.setText("Eliminar");
-        jbEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbEliminarActionPerformed(evt);
-            }
-        });
-
         jbModificar.setText("Modificar");
         jbModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,6 +89,7 @@ public class VistaMateria3 extends javax.swing.JInternalFrame {
             }
         });
 
+        jrNueva.setSelected(true);
         jrNueva.setText("Nueva");
         jrNueva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,8 +139,6 @@ public class VistaMateria3 extends javax.swing.JInternalFrame {
                                 .addComponent(jbCargar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jbModificar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jbEliminar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jbSalir))))
                     .addGroup(layout.createSequentialGroup()
@@ -193,8 +185,7 @@ public class VistaMateria3 extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbCargar)
                     .addComponent(jbSalir)
-                    .addComponent(jbModificar)
-                    .addComponent(jbEliminar))
+                    .addComponent(jbModificar))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -202,14 +193,21 @@ public class VistaMateria3 extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-        // TODO add your handling code here:
-
+        MateriaData md = new MateriaData();
         Materia mater = new Materia();
-
         try {
-            if (!jtCodigo.getText().equals("") && jtNombre.getText().equals("")) {
-                mater = md.buscarMateria(Integer.parseInt(jtCodigo.getText()));
-                //jtCodigo.setText(mater.getIdMateria() + "");
+            if (jtCodigo.getText().equals("")) {
+                mater.setIdMateria(0);
+            } else {
+                mater.setIdMateria(Integer.parseInt(jtCodigo.getText()));
+            }
+            mater.setNombre(jtNombre.getText());
+            md.buscarMateria(mater);
+//            if (mater.getIdMateria() == 0 || mater.getNombre() == null) {
+            if (mater.getIdMateria() == 0) {
+                limpiarCeldas();
+            } else {
+                jtCodigo.setText(mater.getIdMateria() + "");
                 jtNombre.setText(mater.getNombre());
                 jtAnno.setText(mater.getAño() + "");
                 if (mater.isEstado() == true) {
@@ -217,84 +215,48 @@ public class VistaMateria3 extends javax.swing.JInternalFrame {
                 } else {
                     jrEstado.setSelected(false);
                 }
-            } else if (!jtNombre.getText().equals("") && jtCodigo.getText().equals("")) {
-                mater = md.buscarMateria(jtNombre.getText());
-                jtCodigo.setText(mater.getIdMateria() + "");
-                //  jtNombre.setText(mater.getNombre());
-                jtAnno.setText(mater.getAño() + "");
-                if (mater.isEstado() == true) {
-                    jrEstado.setSelected(true);
-                } else {
-                    jrEstado.setSelected(false);
-                }
-            } else if (!jtNombre.getText().equals("") && !jtCodigo.getText().equals("")) {
-                Utileria.mensaje("Solamente complete 1 campo para realizar la busqueda");
-                limpiarCeldas();
+                jbModificar.setEnabled(true);
             }
-        } catch (NumberFormatException e) {
-            Utileria.mensaje("Solo puede ingresar numeros");
-        } catch (NullPointerException e) {
 
+        } catch (NumberFormatException ex) {
+            limpiarCeldas();
+            Utileria.mensaje("Ingrese numeros donde corresponda");
         }
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCargarActionPerformed
-        // TODO add your handling code here:
+        MateriaData md = new MateriaData();
         Materia mater = new Materia();
         try {
             mater.setNombre(jtNombre.getText());
             mater.setAño(Integer.parseInt(jtAnno.getText()));
             mater.setEstado(true);
             md.cargarMateria(mater);
+            limpiarCeldas();
         } catch (NumberFormatException ex) {
-            Utileria.mensaje("Solo se permiten numeros en el campo 'año'");
+            Utileria.mensaje("Solo puede ingresar numeros en el campo año");
         } catch (NullPointerException ex) {
-            Utileria.mensaje("Llene todos los campos a excepcion del campo 'codigo'");
+            Utileria.mensaje("Debe completar el campo año");
         }
-        limpiarCeldas();
     }//GEN-LAST:event_jbCargarActionPerformed
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
-        // TODO add your handling code here:
+        MateriaData md = new MateriaData();
         Materia mater = new Materia();
         try {
-            mater = md.buscarMateria(Integer.parseInt(jtCodigo.getText()));
+            mater.setIdMateria(Integer.parseInt(jtCodigo.getText()));
             mater.setNombre(jtNombre.getText());
             mater.setAño(Integer.parseInt(jtAnno.getText()));
-            mater.isEstado();
-            if (jrModificar.isSelected() && mater.isEstado() == true) {
-                jrEstado.setEnabled(false); // FALTA VER PORQUE NO FUNCIONA! LA IDEA ES QUE APARESCA EN GRIS SIN POSIBILIDAD DE EDITAR
-            } else if (jrModificar.isSelected() && mater.isEstado() == false) {
-                if (jrEstado.isSelected()) {
-                    mater.setEstado(true);
-                } else {
-                    mater.setEstado(false);
-                }
-            }
+            mater.setEstado(jrEstado.isSelected());
             md.modificarMateria(mater);
             Utileria.mensaje("Materia modificada exitosamente");
-        } catch (NumberFormatException ex) {
-            Utileria.mensaje("Solo se permiten numeros en el campo 'año'");
             limpiarCeldas();
+        } catch (NumberFormatException ex) {
+            Utileria.mensaje("Solo ingrese numeros en los campos correspondientes");
+        } catch (NullPointerException ex) {
+            Utileria.mensaje("Debe completar todos los campos");
         }
     }//GEN-LAST:event_jbModificarActionPerformed
-
-    private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
-        // TODO add your handling code here:
-        Materia mater = new Materia();
-        try {
-            mater = md.buscarMateria(Integer.parseInt(jtCodigo.getText()));
-            Object[] op = {"Aceptar", "Cancelar"};
-            int i = JOptionPane.showOptionDialog(this, "Esta seguro que desea eliminar la materia?: " + "\n" + mater.getNombre(), title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, frameIcon, op, "Aceptar");
-            if (i == JOptionPane.YES_OPTION) {
-                md.eliminarMateria(mater.getIdMateria());
-                Utileria.mensaje("Se elimino la materia");
-                limpiarCeldas();
-            }
-        } catch (NumberFormatException e) {
-            Utileria.mensaje("Solo se permiten numeros en el campo 'año'");
-        }
-    }//GEN-LAST:event_jbEliminarActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         Object[] op = {"Aceptar", "Cancelar"};
@@ -305,38 +267,12 @@ public class VistaMateria3 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jrNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrNuevaActionPerformed
-        jrModificar.setSelected(false);
-        jtCodigo.setEnabled(false);
-        jtNombre.setEnabled(true);
-        jtAnno.setEnabled(true);
-        jrEstado.setEnabled(false);
-        jrEstado.setSelected(true);
-        jbBuscar.setEnabled(false);
-        jbModificar.setEnabled(false);
-        jbEliminar.setEnabled(false);
-        jbCargar.setEnabled(true);
-        jbSalir.setEnabled(true);
+        defaultNueva();
     }//GEN-LAST:event_jrNuevaActionPerformed
 
     private void jrModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrModificarActionPerformed
-        jrNueva.setSelected(false);
-        jtCodigo.setEnabled(true);
-        jtNombre.setEnabled(true);
-        jtAnno.setEnabled(false);
-        jrEstado.setEnabled(true);
-        jbBuscar.setEnabled(true);
-        jbModificar.setEnabled(true);
-        jbEliminar.setEnabled(true);
-        jbCargar.setEnabled(false);
-        jbSalir.setEnabled(true);
+        defaultModificar();
     }//GEN-LAST:event_jrModificarActionPerformed
-
-    private void limpiarCeldas() {
-        jtNombre.setText("");
-        jtAnno.setText("");
-        jtCodigo.setText("");
-        jrEstado.setSelected(false);
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -347,7 +283,6 @@ public class VistaMateria3 extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jbBuscar;
     private javax.swing.JButton jbCargar;
-    private javax.swing.JButton jbEliminar;
     private javax.swing.JButton jbModificar;
     private javax.swing.JButton jbSalir;
     private javax.swing.JRadioButton jrEstado;
@@ -357,4 +292,32 @@ public class VistaMateria3 extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtCodigo;
     private javax.swing.JTextField jtNombre;
     // End of variables declaration//GEN-END:variables
+
+    private void limpiarCeldas() {
+        jtCodigo.setText("");
+        jtNombre.setText("");
+        jtAnno.setText("");
+        jrEstado.setSelected(true);
+    }
+
+    public void defaultNueva() {
+        jrNueva.setSelected(true);
+        jrModificar.setSelected(false);
+        jrEstado.setEnabled(false);
+        jrEstado.setSelected(true);
+        jtCodigo.setEnabled(false);
+        jbBuscar.setEnabled(false);
+        jbCargar.setEnabled(true);
+        jbModificar.setEnabled(false);
+    }
+
+    public void defaultModificar() {
+        jrNueva.setSelected(false);
+        jrModificar.setSelected(true);
+        jrEstado.setEnabled(true);
+        jtCodigo.setEnabled(true);
+        jbBuscar.setEnabled(true);
+        jbCargar.setEnabled(false);
+        //jbModificar.setEnabled(true);
+    }
 }
