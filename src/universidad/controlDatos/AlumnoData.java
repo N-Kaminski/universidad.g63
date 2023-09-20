@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -120,9 +121,9 @@ public class AlumnoData {
         return alumno;
     }
 
-    public ArrayList<Alumno> obtenerAlumnos() {
+    public List<Alumno> obtenerAlumnos() {
         ArrayList<Alumno> lista = new ArrayList<>();
-        try (PreparedStatement ps = conec.prepareStatement("SELECT idAlumno, dni, apellido, nombre, fechaNacimiento FROM alumno WHERE estado =1")) {
+        try (PreparedStatement ps = conec.prepareStatement("SELECT idAlumno, dni, apellido, nombre, fechaNac, estado  FROM alumno WHERE estado =1")) {
             try (ResultSet rs = ps.executeQuery();) {
                 while (rs.next()) {
                     /*int idAlumno = rs.getInt("idAlumno");
@@ -131,7 +132,16 @@ public class AlumnoData {
                     String nombre = rs.getString("nombre");
                     LocalDate fechaNacimiento = rs.getDate("fechaNacimiento").toLocalDate();
                     boolean estado = rs.getBoolean("estado");*/
-                    lista.add(new Alumno(rs.getInt("idAlumno"), rs.getInt("dni"), rs.getString("apellido"), rs.getString("nombre"), rs.getDate("fechaNacimiento").toLocalDate(), rs.getBoolean("estado")));
+                    Alumno alum = new Alumno();
+                    alum.setIdAlumno(rs.getInt("idAlumno"));
+                    alum.setDni(rs.getInt("dni"));
+                    alum.setApellido(rs.getString("apellido"));
+                    alum.setNombre(rs.getString("nombre"));
+                    alum.setFechaNac(rs.getDate("fechaNac").toLocalDate());
+//                    Utileria.convertirLocalDate(rs.getDate("fechaNac"));
+                    alum.setEstado(rs.getBoolean("estado"));
+                    lista.add(alum);
+//                    lista.add(new Alumno(rs.getInt("idAlumno"), rs.getInt("dni"), rs.getString("apellido"), rs.getString("nombre"), rs.getDate("fechaNac").toLocalDate(), rs.getBoolean("estado")));
                 }
                 ps.close();
             } catch (SQLException ex) {
