@@ -42,7 +42,6 @@ public class MateriaData {
             if (rs.next()) {
                 materia.setIdMateria(rs.getInt(1));
                 Utileria.mensaje("Materia cargada");
-//                Utileria.mensaje("La materia " + materia.getNombre() + " " + " se cargo corectamente.");
             }
             rs.close();
             ps.close();
@@ -188,27 +187,25 @@ public class MateriaData {
     }
 
     public List<Materia> listarMateria() {
-
-        List<Materia> materias = new ArrayList<>();
-
-        try {
-            String lista = "SELECT * FROM materia WHERE estado = 1";
-            PreparedStatement ps = conec.prepareStatement(lista);
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                Materia materia = new Materia();
-                materia.setIdMateria(rs.getInt("idMateria"));
-                materia.setNombre(rs.getString("nombre"));
-                materia.setIdMateria(rs.getInt("año"));
-                materia.setEstado(rs.getBoolean("estado"));
+        ArrayList<Materia> listaMat = new ArrayList<>();
+        try (PreparedStatement ps = conec.prepareStatement("SELECT idMateria, nombre, año, estado FROM materia WHERE estado = 1")){;
+            try (ResultSet rs = ps.executeQuery();) {
+                while (rs.next()) {
+                    Materia materia = new Materia();
+                    materia.setIdMateria(rs.getInt("idMateria"));
+                    materia.setNombre(rs.getString("nombre"));
+                    materia.setAño(rs.getInt("año"));
+                    materia.setEstado(rs.getBoolean("estado"));
+                    listaMat.add(materia);
+                }
+                ps.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            ps.close();
         } catch (SQLException ex) {
             Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return materias;
+        return listaMat;
     }
 
 }  // LLAVE DE CLASE

@@ -94,7 +94,6 @@ public class AlumnoData {
 
     public Alumno buscarAlumnoPorDni(int dni) {
         Alumno alumno = null;
-        //String buscarDni = "SELECT  idAlumno, dni, apellido, nombre, fechaNac FROM alumno WHERE dni=? AND estado =1";
         String buscarDni = "SELECT  idAlumno, dni, apellido, nombre, fechaNac, estado FROM alumno WHERE dni=?";
         PreparedStatement ps;
         try {
@@ -109,7 +108,6 @@ public class AlumnoData {
                 alumno.setApellido(rs.getString("apellido"));
                 alumno.setNombre(rs.getString("nombre"));
                 alumno.setFechaNac(rs.getDate("fechaNac").toLocalDate());
-                //alumno.setEstado(true); // VER SI ES IGUAL QUE PONERLO COMO EN EL ANTERIOR METODO
                 alumno.setEstado(rs.getBoolean("estado"));
             } else {
                 Utileria.mensaje("No se encontro un alumno con ese numero de documento");
@@ -126,22 +124,14 @@ public class AlumnoData {
         try (PreparedStatement ps = conec.prepareStatement("SELECT idAlumno, dni, apellido, nombre, fechaNac, estado  FROM alumno WHERE estado =1")) {
             try (ResultSet rs = ps.executeQuery();) {
                 while (rs.next()) {
-                    /*int idAlumno = rs.getInt("idAlumno");
-                    String dni = rs.getString("dni");
-                    String apellido = rs.getString("apellido");
-                    String nombre = rs.getString("nombre");
-                    LocalDate fechaNacimiento = rs.getDate("fechaNacimiento").toLocalDate();
-                    boolean estado = rs.getBoolean("estado");*/
                     Alumno alum = new Alumno();
                     alum.setIdAlumno(rs.getInt("idAlumno"));
                     alum.setDni(rs.getInt("dni"));
                     alum.setApellido(rs.getString("apellido"));
                     alum.setNombre(rs.getString("nombre"));
                     alum.setFechaNac(rs.getDate("fechaNac").toLocalDate());
-//                    Utileria.convertirLocalDate(rs.getDate("fechaNac"));
                     alum.setEstado(rs.getBoolean("estado"));
                     lista.add(alum);
-//                    lista.add(new Alumno(rs.getInt("idAlumno"), rs.getInt("dni"), rs.getString("apellido"), rs.getString("nombre"), rs.getDate("fechaNac").toLocalDate(), rs.getBoolean("estado")));
                 }
                 ps.close();
             } catch (SQLException ex) {
@@ -150,7 +140,6 @@ public class AlumnoData {
         } catch (SQLException ex) {
             Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //Collections.sort(lista);
         return lista;
     }
 

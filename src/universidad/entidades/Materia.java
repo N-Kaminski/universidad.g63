@@ -1,6 +1,5 @@
 package universidad.entidades;
 
-
 /**
  * @author Nicolas Kaminski
  */
@@ -17,7 +16,7 @@ public class Materia {
         this.año = año;
         this.estado = estado;
     }
-    
+
     public Materia(String nombre, int año, boolean estado) {
         this.nombre = nombre;
         this.año = año;
@@ -58,6 +57,14 @@ public class Materia {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
-    
 
+    @Override
+    public String toString() {
+        if (nombre.equals("Seleccione una materia")) {
+            return nombre; // Para la materia vacía, solo mostrar el nombre
+        } else {
+            return nombre + " - " + año + "° año"; // Para otras materias, mostrar nombre y año
+        }
+    }
+    
 }  // LLAVE DE CLASE
