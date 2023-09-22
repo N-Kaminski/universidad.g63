@@ -26,6 +26,7 @@ public class InscripcionData {
         conec = Conexion.getConexion();
     }
 
+    // FALTA CHEQUEAR
     public void cargarInscripcion(Inscripcion inscripcion) {
         String cargarInscripcion = "INSERT INTO inscripcion  (nota, idAlumno, idMateria) VALUES (?, ?, ?)";
 
@@ -64,17 +65,78 @@ public class InscripcionData {
         return lista;
     }
 
-    //  INCOMPLETO
+    //      COMPLETADO!!!
     public List<Materia> obtenerMateriasCursadas(int idAlumno) {
         ArrayList<Materia> lista = new ArrayList<>();
-
+        try {
+            String sql = "SELECT inscripcion.idMateria, nombre, año FROM inscripcion,"
+                    + " materia WHERE inscripcion.idMateria = materia.idMateria\n"
+                    + "AND inscripcion.idAlumno = ?";
+            PreparedStatement ps = conec.prepareStatement(sql);
+            ps.setInt(1, idAlumno);
+            ResultSet rs = ps.executeQuery();
+            Materia matt;
+            while (rs.next()) {
+                matt = new Materia();
+                matt.setIdMateria(rs.getInt("idMateria"));
+                matt.setNombre(rs.getString("nombre"));
+                matt.setAño(rs.getInt("año"));
+                lista.add(matt);
+            }
+            rs.close();
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return lista;
     }
 
-    //  INCOMPLETO
+    //      COMPLETADO!!!
     public List<Materia> obtenerMateriasNoCursadas(int idAlumno) {
         ArrayList<Materia> lista = new ArrayList<>();
 
+        try {
+            String sql = "SELECT materia.idMateria, nombre, año \n"
+                    + "FROM materia \n"
+                    + "WHERE idMateria not in (SELECT materia.idMateria FROM inscripcion JOIN materia ON(materia.idMateria=inscripcion.idMateria) WHERE inscripcion.idAlumno = ?)";
+            PreparedStatement ps = conec.prepareStatement(sql);
+            ps.setInt(1, idAlumno);
+            ResultSet rs = ps.executeQuery();
+            Materia matt;
+            while (rs.next()) {
+                matt = new Materia();
+                matt.setIdMateria(rs.getInt("idMateria"));
+                matt.setNombre(rs.getString("nombre"));
+                matt.setAño(rs.getInt("año"));
+                lista.add(matt);
+            }
+            rs.close();
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lista;
+    }
+
+    public List<Materia> listaMaterias() {
+        ArrayList<Materia> lista = new ArrayList<>();
+        String sql = "SELECT idMateria, nombre, año FROM materia";
+        try {
+            PreparedStatement ps = conec.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            Materia matt;
+            while (rs.next()) {
+                matt = new Materia();
+                matt.setIdMateria(rs.getInt("idMateria"));
+                matt.setNombre(rs.getString("nombre"));
+                matt.setAño(rs.getInt("año"));
+                lista.add(matt);
+            }
+            rs.close();
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(InscripcionData.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return lista;
     }
 
@@ -130,7 +192,5 @@ public class InscripcionData {
         }
         return lista;
     }
-
-  
 
 }  // LLAVE DE CLASE

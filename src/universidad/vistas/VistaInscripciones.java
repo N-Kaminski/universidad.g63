@@ -4,7 +4,9 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import universidad.controlDatos.AlumnoData;
+import universidad.controlDatos.InscripcionData;
 import universidad.entidades.Alumno;
+import universidad.entidades.Materia;
 import universidad.g63.Utileria;
 
 /**
@@ -23,7 +25,6 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
         initComponents();
         armarCabecera();
         cargarCombo();
-
     }
 
     @SuppressWarnings("unchecked")
@@ -177,6 +178,7 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
 
     private void jbAnularInsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAnularInsActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jbAnularInsActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
@@ -188,22 +190,68 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jcAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcAlumnosActionPerformed
-        // TODO add your handling code here:
-        if (!jrMatIns.isSelected() && !jrMatNoIns.isSelected()) {
-
+        borrarFilas();
+        InscripcionData Idata = new InscripcionData();
+        Alumno alum = new Alumno();
+        if (jrMatIns.isSelected()) {
+            alum = (Alumno) jcAlumnos.getSelectedItem();
+            List<Materia> lista = Idata.obtenerMateriasCursadas(alum.getIdAlumno());
+            for (Materia mat : lista) {
+                modelo.addRow(new Object[]{
+                    mat.getIdMateria(),
+                    mat.getNombre(),
+                    mat.getAño()
+                });
+            }
+        } else if (jrMatNoIns.isSelected()) {
+            alum = (Alumno) jcAlumnos.getSelectedItem();
+            List<Materia> lista = Idata.obtenerMateriasNoCursadas(alum.getIdAlumno());
+            for (Materia mat : lista) {
+                modelo.addRow(new Object[]{
+                    mat.getIdMateria(),
+                    mat.getNombre(),
+                    mat.getAño()
+                });
+            }
         }
     }//GEN-LAST:event_jcAlumnosActionPerformed
 
     private void jrMatInsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrMatInsActionPerformed
-        // TODO add your handling code here:
+        borrarFilas();
         jbInscribir.setEnabled(false);
         jbAnularIns.setEnabled(true);
+        InscripcionData Idata = new InscripcionData();
+        Alumno alum = new Alumno();
+        if (jcAlumnos.getSelectedObjects() != null) {
+            alum = (Alumno) jcAlumnos.getSelectedItem();
+            List<Materia> lista = Idata.obtenerMateriasCursadas(alum.getIdAlumno());
+            for (Materia mat : lista) {
+                modelo.addRow(new Object[]{
+                    mat.getIdMateria(),
+                    mat.getNombre(),
+                    mat.getAño()
+                });
+            }
+        }
     }//GEN-LAST:event_jrMatInsActionPerformed
 
     private void jrMatNoInsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrMatNoInsActionPerformed
-        // TODO add your handling code here:
+        borrarFilas();
         jbInscribir.setEnabled(true);
         jbAnularIns.setEnabled(false);
+        InscripcionData Idata = new InscripcionData();
+        Alumno alum = new Alumno();
+        if (jcAlumnos.getSelectedObjects() != null) {
+            alum = (Alumno) jcAlumnos.getSelectedItem();
+            List<Materia> lista = Idata.obtenerMateriasNoCursadas(alum.getIdAlumno());
+            for (Materia mat : lista) {
+                modelo.addRow(new Object[]{
+                    mat.getIdMateria(),
+                    mat.getNombre(),
+                    mat.getAño()
+                });
+            }
+        }
     }//GEN-LAST:event_jrMatNoInsActionPerformed
 
 
@@ -237,7 +285,12 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
             jcAlumnos.addItem(alum);
         }
         jcAlumnos.setSelectedIndex(-1);
-        
     }
 
+    private void borrarFilas() {
+        int f = jtMaterias.getRowCount() - 1;
+        for (; f >= 0; f--) {
+            modelo.removeRow(f);
+        }
+    }
 }
