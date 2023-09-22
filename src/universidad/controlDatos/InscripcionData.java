@@ -26,19 +26,15 @@ public class InscripcionData {
         conec = Conexion.getConexion();
     }
 
-    // FALTA CHEQUEAR
+    //      COMPLETADO!!!
     public void cargarInscripcion(Inscripcion inscripcion) {
         String cargarInscripcion = "INSERT INTO inscripcion  (nota, idAlumno, idMateria) VALUES (?, ?, ?)";
-
         try {
             PreparedStatement ps = conec.prepareStatement(cargarInscripcion, Statement.RETURN_GENERATED_KEYS);
             ps.setDouble(1, inscripcion.getNota());
             ps.setInt(2, inscripcion.getAlumno().getIdAlumno());
             ps.setInt(3, inscripcion.getMateria().getIdMateria());
-            //ps.setObject(2, inscripcion.getAlumno().getIdAlumno());
-            //ps.setObject(3, inscripcion.getMateria().getIdMateria());
             ps.executeUpdate();
-
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 inscripcion.setIdInscripto(rs.getInt(1));
@@ -58,10 +54,35 @@ public class InscripcionData {
         return lista;
     }
 
-    //  INCOMPLETO
+    //      COMPLETADO!!!
     public List<Inscripcion> obtenerInscripcionesPorAlumno(int idAlumno) {
-        ArrayList<Inscripcion> lista = new ArrayList<>();
-
+        List<Inscripcion> lista = new ArrayList<>();
+        Inscripcion inscrip = new Inscripcion();
+        AlumnoData adata = new AlumnoData();
+        Alumno alum = new Alumno();
+        alum = adata.buscarAlumno(idAlumno);
+        inscrip.setAlumno(alum);
+        String sql = "SELECT inscripcion.idMateria, materia.nombre, inscripcion.nota\n"
+                + "FROM inscripcion JOIN materia ON(inscripcion.idMateria=materia.idMateria)\n"
+                + "WHERE inscripcion.idAlumno = ?";
+        try {
+            PreparedStatement ps = conec.prepareStatement(sql);
+            ps.setInt(1, idAlumno);
+            ResultSet rs = ps.executeQuery();
+            Materia matt;
+            while (rs.next()) {
+                matt = new Materia();
+                matt.setIdMateria(rs.getInt("idMateria"));
+                matt.setNombre(rs.getString("nombre"));
+                inscrip.setMateria(matt);
+                inscrip.setNota(rs.getDouble("nota"));
+                lista.add(inscrip);
+            }
+            rs.close();
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(InscripcionData.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return lista;
     }
 
@@ -140,37 +161,36 @@ public class InscripcionData {
         return lista;
     }
 
-    //  FALTA CHEQUEAR
+    //      COMPLETADO!!!
     public void borrarInscripcionMateriaAlumno(int idAlumno, int idMateria) {
-        String borrarInscripcion = "UPDATE inscripcion SET estado=0 WHERE idAlumno=? AND idMateria =?";
-
+        String sql = "DELETE FROM inscripcion WHERE idAlumno=? AND idMateria =?";
         try {
-            PreparedStatement ps = conec.prepareStatement(borrarInscripcion);
+            PreparedStatement ps = conec.prepareStatement(sql);
             ps.setInt(1, idAlumno);
             ps.setInt(2, idMateria);
             ps.executeUpdate();
-
+            Utileria.mensaje("La inscripcion fue anulada correctamente");
             ps.close();
         } catch (SQLException ex) {
             Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    //  FALTA CHEQUEAR
+    //      COMPLETADO!!!
     public void actualizarNota(int idAlumno, int idMateria, double nota) {
         String actualizarNota = "UPDATE inscripcion SET nota=? WHERE idAlumno=? AND idMateria =?";
-
         try {
             PreparedStatement ps = conec.prepareStatement(actualizarNota);
             ps.setInt(2, idAlumno);
-            ps.setDouble(1, nota);  //auch
+            ps.setDouble(1, nota);
             ps.setInt(3, idMateria);
             ps.executeUpdate();
-
+            Utileria.mensaje("Se actualizo la nota correctamente");
             ps.close();
         } catch (SQLException ex) {
             Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
 
     //  INCOMPLETO

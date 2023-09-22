@@ -10,7 +10,7 @@ public class Inscripcion {
     private double nota;
     private Alumno alumno;
     private Materia materia;
-
+  
     public Inscripcion() {
     }
 
