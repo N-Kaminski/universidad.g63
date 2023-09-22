@@ -108,9 +108,9 @@ public class Escritorio extends javax.swing.JFrame {
         jMenuBar1.add(jmConsultas);
 
         jmSalir.setText("Salir");
-        jmSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmSalirActionPerformed(evt);
+        jmSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jmSalirMouseClicked(evt);
             }
         });
         jMenuBar1.add(jmSalir);
@@ -185,10 +185,10 @@ public class Escritorio extends javax.swing.JFrame {
         Utileria.centrarInternalFrame(escritorio, va);
     }//GEN-LAST:event_jmCAlumXMatActionPerformed
 
-    private void jmSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmSalirActionPerformed
-        // TODO add your handling code here:
-        int option = JOptionPane.showConfirmDialog(
-                escritorio,
+    private void jmSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmSalirMouseClicked
+        int option = 0;
+        JOptionPane.showConfirmDialog(
+                this,
                 "¿Estás seguro de que quieres cerrar la aplicación?",
                 "Confirmación de cierre",
                 JOptionPane.YES_NO_OPTION,
@@ -196,7 +196,7 @@ public class Escritorio extends javax.swing.JFrame {
         if (option == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
-    }//GEN-LAST:event_jmSalirActionPerformed
+    }//GEN-LAST:event_jmSalirMouseClicked
 
     /**
      * @param args the command line arguments

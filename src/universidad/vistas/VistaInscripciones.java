@@ -26,6 +26,8 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
         initComponents();
         armarCabecera();
         cargarCombo();
+        jbInscribir.setEnabled(false);
+        jbAnularIns.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -174,31 +176,34 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbInscribirActionPerformed
-        // TODO add your handling code here:
-        InscripcionData idata = new InscripcionData();
-        Inscripcion insc = new Inscripcion();
-        insc.setNota(0);
-        insc.setAlumno((Alumno) jcAlumnos.getSelectedItem());
-        insc.setMateria(seleccionJTable(jtMaterias.getSelectedRow()));
-        idata.cargarInscripcion(insc);
+        if (jtMaterias.getSelectedRow() >= 0) {
+            InscripcionData idata = new InscripcionData();
+            Inscripcion insc = new Inscripcion();
+            insc.setNota(0);
+            insc.setAlumno((Alumno) jcAlumnos.getSelectedItem());
+            insc.setMateria(seleccionJTable(jtMaterias.getSelectedRow()));
+            idata.cargarInscripcion(insc);
+        } else {
+            Utileria.mensaje("Seleccione la fila a modificar nota");
+        }
     }//GEN-LAST:event_jbInscribirActionPerformed
 
     private void jbAnularInsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAnularInsActionPerformed
-        // TODO add your handling code here:
-        InscripcionData idata = new InscripcionData();
-        Inscripcion insc = new Inscripcion();
-        insc.setNota(0);
-        insc.setAlumno((Alumno) jcAlumnos.getSelectedItem());
-        insc.setMateria(seleccionJTable(jtMaterias.getSelectedRow()));
-
-        Object[] op = {"Aceptar", "Cancelar"};
-        int i = JOptionPane.showOptionDialog(this, "Desea anular la inscripcion del" + "\n" + "Alumno: " + insc.getAlumno().getApellido() + ", " + insc.getAlumno().getNombre()
-                + "\n" + "De la materia: " + insc.getMateria().getNombre() + "?", title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, frameIcon, op, "Aceptar");
-        if (i == JOptionPane.YES_OPTION) {
-            idata.borrarInscripcionMateriaAlumno(insc.getAlumno().getIdAlumno(), insc.getMateria().getIdMateria());
+        if (jtMaterias.getSelectedRow() >= 0) {
+            InscripcionData idata = new InscripcionData();
+            Inscripcion insc = new Inscripcion();
+            insc.setNota(0);
+            insc.setAlumno((Alumno) jcAlumnos.getSelectedItem());
+            insc.setMateria(seleccionJTable(jtMaterias.getSelectedRow()));
+            Object[] op = {"Aceptar", "Cancelar"};
+            int i = JOptionPane.showOptionDialog(this, "Desea anular la inscripcion del" + "\n" + "Alumno: " + insc.getAlumno().getApellido() + ", " + insc.getAlumno().getNombre()
+                    + "\n" + "De la materia: " + insc.getMateria().getNombre() + "?", title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, frameIcon, op, "Aceptar");
+            if (i == JOptionPane.YES_OPTION) {
+                idata.borrarInscripcionMateriaAlumno(insc.getAlumno().getIdAlumno(), insc.getMateria().getIdMateria());
+            }
+        } else {
+            Utileria.mensaje("Seleccione la fila a modificar nota");
         }
-
-
     }//GEN-LAST:event_jbAnularInsActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
@@ -210,68 +215,19 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jcAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcAlumnosActionPerformed
-        borrarFilas();
-        InscripcionData Idata = new InscripcionData();
-        Alumno alum = new Alumno();
-        if (jrMatIns.isSelected()) {
-            alum = (Alumno) jcAlumnos.getSelectedItem();
-            List<Materia> lista = Idata.obtenerMateriasCursadas(alum.getIdAlumno());
-            for (Materia mat : lista) {
-                modelo.addRow(new Object[]{
-                    mat.getIdMateria(),
-                    mat.getNombre(),
-                    mat.getAño()
-                });
-            }
-        } else if (jrMatNoIns.isSelected()) {
-            alum = (Alumno) jcAlumnos.getSelectedItem();
-            List<Materia> lista = Idata.obtenerMateriasNoCursadas(alum.getIdAlumno());
-            for (Materia mat : lista) {
-                modelo.addRow(new Object[]{
-                    mat.getIdMateria(),
-                    mat.getNombre(),
-                    mat.getAño()
-                });
-            }
-        }
+        actualizarTabla();
     }//GEN-LAST:event_jcAlumnosActionPerformed
 
     private void jrMatInsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrMatInsActionPerformed
-        borrarFilas();
         jbInscribir.setEnabled(false);
         jbAnularIns.setEnabled(true);
-        InscripcionData Idata = new InscripcionData();
-        Alumno alum = new Alumno();
-        if (jcAlumnos.getSelectedItem() != null) {
-            alum = (Alumno) jcAlumnos.getSelectedItem();
-            List<Materia> lista = Idata.obtenerMateriasCursadas(alum.getIdAlumno());
-            for (Materia mat : lista) {
-                modelo.addRow(new Object[]{
-                    mat.getIdMateria(),
-                    mat.getNombre(),
-                    mat.getAño()
-                });
-            }
-        }
+        actualizarTabla();
     }//GEN-LAST:event_jrMatInsActionPerformed
 
     private void jrMatNoInsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrMatNoInsActionPerformed
-        borrarFilas();
         jbInscribir.setEnabled(true);
         jbAnularIns.setEnabled(false);
-        InscripcionData Idata = new InscripcionData();
-        Alumno alum = new Alumno();
-        if (jcAlumnos.getSelectedItem() != null) {
-            alum = (Alumno) jcAlumnos.getSelectedItem();
-            List<Materia> lista = Idata.obtenerMateriasNoCursadas(alum.getIdAlumno());
-            for (Materia mat : lista) {
-                modelo.addRow(new Object[]{
-                    mat.getIdMateria(),
-                    mat.getNombre(),
-                    mat.getAño()
-                });
-            }
-        }
+        actualizarTabla();
     }//GEN-LAST:event_jrMatNoInsActionPerformed
 
 
@@ -314,10 +270,39 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
         }
     }
 
+    private void actualizarTabla() {
+        borrarFilas();
+        InscripcionData Idata = new InscripcionData();
+        Alumno alum = new Alumno();
+        if (jcAlumnos.getSelectedItem() != null) {
+            alum = (Alumno) jcAlumnos.getSelectedItem();
+            if (jrMatIns.isSelected()) {
+                List<Materia> lista = Idata.obtenerMateriasCursadas(alum.getIdAlumno());
+                for (Materia mat : lista) {
+                    modelo.addRow(new Object[]{
+                        mat.getIdMateria(),
+                        mat.getNombre(),
+                        mat.getAño()
+                    });
+                }
+            } else if(jrMatNoIns.isSelected()){
+                List<Materia> lista = Idata.obtenerMateriasNoCursadas(alum.getIdAlumno());
+                for (Materia mat : lista) {
+                    modelo.addRow(new Object[]{
+                        mat.getIdMateria(),
+                        mat.getNombre(),
+                        mat.getAño()
+                    });
+                }
+            }
+        }
+    }
+
     private Materia seleccionJTable(int fila) {
         Materia mat = new Materia();
         mat.setIdMateria((int) jtMaterias.getValueAt(fila, 0));
         mat.setNombre((String) jtMaterias.getValueAt(fila, 1));
         return mat;
     }
-}
+
+}//LLAVE CLASE

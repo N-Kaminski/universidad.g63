@@ -185,6 +185,7 @@ public class VistaNotas extends javax.swing.JInternalFrame {
         }
     }
 
+    //ACTUALIZARTABLA
     public void actualizarCombo() {
         borrarFilas();
         InscripcionData Idata = new InscripcionData();
