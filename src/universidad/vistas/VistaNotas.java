@@ -25,6 +25,7 @@ public class VistaNotas extends javax.swing.JInternalFrame {
         initComponents();
         armarCabecera();
         cargarCombo();
+        jbGuardar.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -66,7 +67,7 @@ public class VistaNotas extends javax.swing.JInternalFrame {
             }
         });
 
-        jbSalir.setText("Salir");
+        jbSalir.setText("Cerrar");
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbSalirActionPerformed(evt);
@@ -148,7 +149,8 @@ public class VistaNotas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jcAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcAlumnosActionPerformed
-        actualizarCombo();
+        jbGuardar.setEnabled(true);
+        actualizarCombo(); // actualizarTabla
     }//GEN-LAST:event_jcAlumnosActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

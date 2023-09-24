@@ -103,7 +103,7 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
             }
         });
 
-        jbSalir.setText("Salir");
+        jbSalir.setText("Cerrar");
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbSalirActionPerformed(evt);
@@ -176,35 +176,43 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbInscribirActionPerformed
-        if (jtMaterias.getSelectedRow() >= 0) {
-            InscripcionData idata = new InscripcionData();
-            Inscripcion insc = new Inscripcion();
-            insc.setNota(0);
-            insc.setAlumno((Alumno) jcAlumnos.getSelectedItem());
-            insc.setMateria(seleccionJTable(jtMaterias.getSelectedRow()));
-            idata.cargarInscripcion(insc);
-            actualizarTabla();
+        if (jcAlumnos.getSelectedIndex() >= 0) {
+            if (jtMaterias.getSelectedRow() >= 0) {
+                InscripcionData idata = new InscripcionData();
+                Inscripcion insc = new Inscripcion();
+                insc.setNota(0);
+                insc.setAlumno((Alumno) jcAlumnos.getSelectedItem());
+                insc.setMateria(seleccionJTable(jtMaterias.getSelectedRow()));
+                idata.cargarInscripcion(insc);
+                actualizarTabla();
+            } else {
+                Utileria.mensaje("Seleccione la fila a modificar nota");
+            }
         } else {
-            Utileria.mensaje("Seleccione la fila a modificar nota");
+            Utileria.mensaje("Antes debe seleccionar un alumno");
         }
     }//GEN-LAST:event_jbInscribirActionPerformed
 
     private void jbAnularInsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAnularInsActionPerformed
-        if (jtMaterias.getSelectedRow() >= 0) {
-            InscripcionData idata = new InscripcionData();
-            Inscripcion insc = new Inscripcion();
-            insc.setNota(0);
-            insc.setAlumno((Alumno) jcAlumnos.getSelectedItem());
-            insc.setMateria(seleccionJTable(jtMaterias.getSelectedRow()));
-            Object[] op = {"Aceptar", "Cancelar"};
-            int i = JOptionPane.showOptionDialog(this, "Desea anular la inscripcion del" + "\n" + "Alumno: " + insc.getAlumno().getApellido() + ", " + insc.getAlumno().getNombre()
-                    + "\n" + "De la materia: " + insc.getMateria().getNombre() + "?", title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, frameIcon, op, "Aceptar");
-            if (i == JOptionPane.YES_OPTION) {
-                idata.borrarInscripcionMateriaAlumno(insc.getAlumno().getIdAlumno(), insc.getMateria().getIdMateria());
-                actualizarTabla();
+        if (jcAlumnos.getSelectedIndex() >= 0) {
+            if (jtMaterias.getSelectedRow() >= 0) {
+                InscripcionData idata = new InscripcionData();
+                Inscripcion insc = new Inscripcion();
+                insc.setNota(0);
+                insc.setAlumno((Alumno) jcAlumnos.getSelectedItem());
+                insc.setMateria(seleccionJTable(jtMaterias.getSelectedRow()));
+                Object[] op = {"Aceptar", "Cancelar"};
+                int i = JOptionPane.showOptionDialog(this, "Desea anular la inscripcion del" + "\n" + "Alumno: " + insc.getAlumno().getApellido() + ", " + insc.getAlumno().getNombre()
+                        + "\n" + "De la materia: " + insc.getMateria().getNombre() + "?", title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, frameIcon, op, "Aceptar");
+                if (i == JOptionPane.YES_OPTION) {
+                    idata.borrarInscripcionMateriaAlumno(insc.getAlumno().getIdAlumno(), insc.getMateria().getIdMateria());
+                    actualizarTabla();
+                }
+            } else {
+                Utileria.mensaje("Seleccione la fila a modificar nota");
             }
         } else {
-            Utileria.mensaje("Seleccione la fila a modificar nota");
+            Utileria.mensaje("Antes debe seleccionar un alumno");
         }
     }//GEN-LAST:event_jbAnularInsActionPerformed
 
@@ -287,7 +295,7 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
                         mat.getAño()
                     });
                 }
-            } else if(jrMatNoIns.isSelected()){
+            } else if (jrMatNoIns.isSelected()) {
                 List<Materia> lista = Idata.obtenerMateriasNoCursadas(alum.getIdAlumno());
                 for (Materia mat : lista) {
                     modelo.addRow(new Object[]{

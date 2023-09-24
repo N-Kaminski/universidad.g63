@@ -167,34 +167,6 @@ public class AlumnoData {
     public List<Alumno> obtenerListaAlumnos(int estado, int orden) {
         ArrayList<Alumno> lista = new ArrayList<>();
         String sql = formarSQL(estado, orden);
-//        String sql = "SELECT idAlumno, dni, apellido, nombre, fechaNac, estado FROM alumno";
-//        switch (estado) {
-//            case 0:
-//                break;
-//            case 1:
-//                sql += " WHERE estado = 1";
-//                break;
-//            case 2:
-//                sql += " WHERE estado = 0";
-//                break;
-//        };
-//        switch (orden) {
-//            case 0:
-//                sql += " ORDER BY idAlumno";
-//                break;
-//            case 1:
-//                sql += " ORDER BY dni";
-//                break;
-//            case 2:
-//                sql += " ORDER BY apellido";
-//                break;
-//            case 3:
-//                sql += " ORDER BY nombre";
-//                break;
-//            case 4:
-//                sql += " ORDER BY fechaNac";
-//                break;
-//        }
         try {
             PreparedStatement ps = conec.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -247,4 +219,5 @@ public class AlumnoData {
         }
         return sql;
     }
+    
 }  // LLAVE DE CLASE

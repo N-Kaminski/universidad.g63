@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package universidad.vistas;
 
 import javax.swing.JOptionPane;
@@ -75,7 +70,7 @@ public class VistaMateria3 extends javax.swing.JInternalFrame {
             }
         });
 
-        jbSalir.setText("Salir");
+        jbSalir.setText("Cerrar");
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbSalirActionPerformed(evt);
@@ -196,14 +191,14 @@ public class VistaMateria3 extends javax.swing.JInternalFrame {
         MateriaData md = new MateriaData();
         Materia mater = new Materia();
         try {
-            if (jtCodigo.getText().equals("")) {
-                mater.setIdMateria(0);
-            } else {
-                mater.setIdMateria(Integer.parseInt(jtCodigo.getText()));
+            String txt = JOptionPane.showInputDialog(this, "Cual es el codigo a buscar?", title, JOptionPane.QUESTION_MESSAGE);
+            int codigo = Integer.parseInt(txt);
+            if (codigo < 1) {
+                Utileria.mensaje("Debe ingresar un codigo mayor a cero");
             }
+            mater.setIdMateria(codigo);
             mater.setNombre(jtNombre.getText());
             md.buscarMateria(mater);
-//            if (mater.getIdMateria() == 0 || mater.getNombre() == null) {
             if (mater.getIdMateria() == 0) {
                 limpiarCeldas();
             } else {
@@ -217,44 +212,51 @@ public class VistaMateria3 extends javax.swing.JInternalFrame {
                 }
                 jbModificar.setEnabled(true);
             }
-
         } catch (NumberFormatException ex) {
             limpiarCeldas();
             Utileria.mensaje("Ingrese numeros donde corresponda");
+        } catch (NullPointerException ex) {
+
         }
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCargarActionPerformed
-        MateriaData md = new MateriaData();
-        Materia mater = new Materia();
-        try {
-            mater.setNombre(jtNombre.getText());
-            mater.setAño(Integer.parseInt(jtAnno.getText()));
-            mater.setEstado(true);
-            md.cargarMateria(mater);
-            limpiarCeldas();
-        } catch (NumberFormatException ex) {
-            Utileria.mensaje("Solo puede ingresar numeros en el campo año");
-        } catch (NullPointerException ex) {
-            Utileria.mensaje("Debe completar el campo año");
+        if (jtNombre.getText().equals("") || jtAnno.getText().equals("")) {
+            Utileria.mensaje("Complete los campos disponibles");
+        } else {
+            MateriaData md = new MateriaData();
+            Materia mater = new Materia();
+            try {
+                mater.setNombre(jtNombre.getText());
+                mater.setAño(Integer.parseInt(jtAnno.getText()));
+                mater.setEstado(true);
+                md.cargarMateria(mater);
+                limpiarCeldas();
+            } catch (NumberFormatException ex) {
+                Utileria.mensaje("Solo puede ingresar numeros en el campo año");
+            } catch (NullPointerException ex) {
+                Utileria.mensaje("Debe completar el campo año");
+            }
         }
     }//GEN-LAST:event_jbCargarActionPerformed
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
-        MateriaData md = new MateriaData();
-        Materia mater = new Materia();
-        try {
-            mater.setIdMateria(Integer.parseInt(jtCodigo.getText()));
-            mater.setNombre(jtNombre.getText());
-            mater.setAño(Integer.parseInt(jtAnno.getText()));
-            mater.setEstado(jrEstado.isSelected());
-            md.modificarMateria(mater);
-            Utileria.mensaje("Materia modificada exitosamente");
-            limpiarCeldas();
-        } catch (NumberFormatException ex) {
-            Utileria.mensaje("Solo ingrese numeros en los campos correspondientes");
-        } catch (NullPointerException ex) {
-            Utileria.mensaje("Debe completar todos los campos");
+        if (jtNombre.getText().equals("") || jtAnno.getText().equals("")) {
+            Utileria.mensaje("Faltan completar campos");
+        } else {
+            MateriaData md = new MateriaData();
+            Materia mater = new Materia();
+            try {
+                mater.setIdMateria(Integer.parseInt(jtCodigo.getText()));
+                mater.setNombre(jtNombre.getText());
+                mater.setAño(Integer.parseInt(jtAnno.getText()));
+                mater.setEstado(jrEstado.isSelected());
+                md.modificarMateria(mater);
+                Utileria.mensaje("Materia modificada exitosamente");
+                limpiarCeldas();
+            } catch (NumberFormatException ex) {
+                Utileria.mensaje("Solo ingrese numeros en los campos correspondientes");
+            }
         }
     }//GEN-LAST:event_jbModificarActionPerformed
 
@@ -315,9 +317,9 @@ public class VistaMateria3 extends javax.swing.JInternalFrame {
         jrNueva.setSelected(false);
         jrModificar.setSelected(true);
         jrEstado.setEnabled(true);
-        jtCodigo.setEnabled(true);
+//        jtCodigo.setEnabled(true);
         jbBuscar.setEnabled(true);
         jbCargar.setEnabled(false);
-        //jbModificar.setEnabled(true);
     }
-}
+
+}   //  Llave final
