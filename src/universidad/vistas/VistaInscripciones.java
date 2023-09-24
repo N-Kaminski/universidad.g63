@@ -183,6 +183,7 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
             insc.setAlumno((Alumno) jcAlumnos.getSelectedItem());
             insc.setMateria(seleccionJTable(jtMaterias.getSelectedRow()));
             idata.cargarInscripcion(insc);
+            actualizarTabla();
         } else {
             Utileria.mensaje("Seleccione la fila a modificar nota");
         }
@@ -200,6 +201,7 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
                     + "\n" + "De la materia: " + insc.getMateria().getNombre() + "?", title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, frameIcon, op, "Aceptar");
             if (i == JOptionPane.YES_OPTION) {
                 idata.borrarInscripcionMateriaAlumno(insc.getAlumno().getIdAlumno(), insc.getMateria().getIdMateria());
+                actualizarTabla();
             }
         } else {
             Utileria.mensaje("Seleccione la fila a modificar nota");

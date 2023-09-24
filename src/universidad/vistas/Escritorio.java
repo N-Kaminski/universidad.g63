@@ -5,6 +5,7 @@
  */
 package universidad.vistas;
 
+import VistasExtra.ListaAlumnos;
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
 import universidad.g63.Utileria;
@@ -45,6 +46,8 @@ public class Escritorio extends javax.swing.JFrame {
         jmConsultas = new javax.swing.JMenu();
         jmCAlumXMat = new javax.swing.JMenuItem();
         jmSalir = new javax.swing.JMenu();
+        jmExtra = new javax.swing.JMenu();
+        jmListaAlumnos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -114,6 +117,18 @@ public class Escritorio extends javax.swing.JFrame {
             }
         });
         jMenuBar1.add(jmSalir);
+
+        jmExtra.setText("Extra");
+
+        jmListaAlumnos.setText("Lista Alumnos");
+        jmListaAlumnos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmListaAlumnosActionPerformed(evt);
+            }
+        });
+        jmExtra.add(jmListaAlumnos);
+
+        jMenuBar1.add(jmExtra);
 
         setJMenuBar(jMenuBar1);
 
@@ -197,6 +212,16 @@ public class Escritorio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jmSalirMouseClicked
 
+    private void jmListaAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmListaAlumnosActionPerformed
+       escritorio.removeAll();
+        escritorio.repaint();
+        ListaAlumnos va = new ListaAlumnos();
+        va.setVisible(true);
+        escritorio.add(va);
+        escritorio.moveToFront(va);
+        Utileria.centrarInternalFrame(escritorio, va);
+    }//GEN-LAST:event_jmListaAlumnosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -238,8 +263,10 @@ public class Escritorio extends javax.swing.JFrame {
     private javax.swing.JMenu jmAdmins;
     private javax.swing.JMenuItem jmCAlumXMat;
     private javax.swing.JMenu jmConsultas;
+    private javax.swing.JMenu jmExtra;
     private javax.swing.JMenuItem jmFormAlum;
     private javax.swing.JMenuItem jmFormMat;
+    private javax.swing.JMenuItem jmListaAlumnos;
     private javax.swing.JMenuItem jmManejoIns;
     private javax.swing.JMenuItem jmManipNotas;
     private javax.swing.JMenu jmSalir;
