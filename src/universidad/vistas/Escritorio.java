@@ -186,8 +186,7 @@ public class Escritorio extends javax.swing.JFrame {
     }//GEN-LAST:event_jmCAlumXMatActionPerformed
 
     private void jmSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmSalirMouseClicked
-        int option = 0;
-        JOptionPane.showConfirmDialog(
+        int option = JOptionPane.showConfirmDialog(
                 this,
                 "¿Estás seguro de que quieres cerrar la aplicación?",
                 "Confirmación de cierre",

@@ -61,7 +61,7 @@ public class InscripcionData {
         AlumnoData adata = new AlumnoData();
         Alumno alum = new Alumno();
         alum = adata.buscarAlumno(idAlumno);
-        inscrip.setAlumno(alum);
+       // inscrip.setAlumno(alum);      | NOSE PARA QUE ESTA PERO FUNCIONA IGUAL XD |
         String sql = "SELECT inscripcion.idMateria, materia.nombre, inscripcion.nota\n"
                 + "FROM inscripcion JOIN materia ON(inscripcion.idMateria=materia.idMateria)\n"
                 + "WHERE inscripcion.idAlumno = ?";
@@ -71,6 +71,7 @@ public class InscripcionData {
             ResultSet rs = ps.executeQuery();
             Materia matt;
             while (rs.next()) {
+                inscrip = new Inscripcion();    //  | TUBE QUE AGREGARLO PARA CREAR LA INSTANCIA DE INSCRIP PARA CADA NUEVA MATERIA |
                 matt = new Materia();
                 matt.setIdMateria(rs.getInt("idMateria"));
                 matt.setNombre(rs.getString("nombre"));
