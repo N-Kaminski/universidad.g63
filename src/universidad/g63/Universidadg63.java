@@ -6,9 +6,7 @@ package universidad.g63;
 import universidad.vistas.Escritorio;
 
 
-
 public class Universidadg63 {
-
 
     public static void main(String[] args) {
         Escritorio escritorio = new Escritorio();

@@ -6,6 +6,7 @@ import javax.swing.table.DefaultTableModel;
 import universidad.controlDatos.AlumnoData;
 import universidad.entidades.Alumno;
 import universidad.g63.Utileria;
+import universidad.vistas.*;
 
 /**
  *
@@ -209,6 +210,12 @@ public class ListaAlumnos extends javax.swing.JInternalFrame {
 
     private void jbNuevoAlumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoAlumActionPerformed
         // TODO add your handling code here:
+
+        NewAlumno va = new NewAlumno();
+        va.setVisible(true);
+        Escritorio.escritorio.add(va);
+        va.toFront();
+        Utileria.centrarInternalFrame(Escritorio.escritorio, va);
     }//GEN-LAST:event_jbNuevoAlumActionPerformed
 
     private void jbEditarAlumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarAlumActionPerformed
