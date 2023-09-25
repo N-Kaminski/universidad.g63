@@ -145,19 +145,21 @@ public class AlumnoData {
     }
 
     public void eliminarAlumno(int id) {
-        String eliminarAlumno = "UPDATE alumno SET  estado = 0 WHERE idAlumno =?";
-
-        try {
-            PreparedStatement ps = conec.prepareStatement(eliminarAlumno);
-            ps.setInt(1, id);
-            int fila = ps.executeUpdate();
-
-//            if (fila == 1) {
-//                JOptionPane.showMessageDialog(null, "Se dio de baja el alumno");
-//            }
-            ps.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
+        Alumno alum = new Alumno();
+        alum = buscarAlumno(id);
+        if (alum.isEstado() == false) {
+            Utileria.mensaje("El alumno ya se encuentra dado de baja");
+        } else {
+            String eliminarAlumno = "UPDATE alumno SET  estado = 0 WHERE idAlumno =?";
+            try {
+                PreparedStatement ps = conec.prepareStatement(eliminarAlumno);
+                ps.setInt(1, id);
+                int fila = ps.executeUpdate();
+                Utileria.mensaje("Se dio de baja al alumno");
+                ps.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
@@ -219,5 +221,5 @@ public class AlumnoData {
         }
         return sql;
     }
-    
+
 }  // LLAVE DE CLASE

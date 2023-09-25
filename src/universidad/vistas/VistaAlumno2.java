@@ -185,38 +185,48 @@ public class VistaAlumno2 extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-        AlumnoData adata = new AlumnoData();
-        Alumno alum = new Alumno();
-        try {
-            int dni = Integer.parseInt(jtDocumento.getText());
-            alum = adata.buscarAlumnoPorDni(dni);
-            jtApellido.setText(alum.getApellido());
-            jtNombre.setText(alum.getNombre());
-            jrEstado.setSelected(alum.isEstado());
-            jdFechaNac.setDate(Utileria.convertirDate(alum.getFechaNac()));
-            contador += 1;
-        } catch (NumberFormatException e) {
-            Utileria.mensaje("Solo puede ingresar numeros en documento");
-        } catch (NullPointerException e) {
-
+        if (jtDocumento.getText().equals("")) {
+            Utileria.mensaje("Debe ingresar un DNI valido para realizar la busqueda");
+        } else {
+            AlumnoData adata = new AlumnoData();
+            Alumno alum = new Alumno();
+            try {
+                int dni = Integer.parseInt(jtDocumento.getText());
+                alum = adata.buscarAlumnoPorDni(dni);
+                jtApellido.setText(alum.getApellido());
+                jtNombre.setText(alum.getNombre());
+                jrEstado.setSelected(alum.isEstado());
+                jdFechaNac.setDate(Utileria.convertirDate(alum.getFechaNac()));
+                contador += 1;  // se utiliza para activar/desactivar el boton "Modificar"
+            } catch (NumberFormatException e) {
+                Utileria.mensaje("Solo puede ingresar numeros en documento");
+            } catch (NullPointerException e) {
+                int docu = Integer.parseInt(jtDocumento.getText());
+                limpiarCeldas();
+                jtDocumento.setText(docu + "");
+            }
         }
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCargarActionPerformed
-        AlumnoData adata = new AlumnoData();
-        Alumno alum = new Alumno();
-        try {
-            alum.setDni(Integer.parseInt(jtDocumento.getText()));
-            alum.setApellido(jtApellido.getText());
-            alum.setNombre(jtNombre.getText());
-            alum.setEstado(true);
-            alum.setFechaNac(Utileria.convertirLocalDate(jdFechaNac.getDate()));
-            adata.guardarAlumno(alum);
-            limpiarCeldas();
-        } catch (NumberFormatException e) {
-            Utileria.mensaje("Solo puede ingresar numeros en documento");
-        } catch (NullPointerException e) {
-            Utileria.mensaje("Llene todos los campos");
+        if (jtDocumento.getText().equals("") || jtApellido.getText().equals("") || jtNombre.getText().equals("") || jdFechaNac.getDate().equals("")) {
+            Utileria.mensaje("Debe llenar todos los campos");
+        } else {
+            AlumnoData adata = new AlumnoData();
+            Alumno alum = new Alumno();
+            try {
+                alum.setDni(Integer.parseInt(jtDocumento.getText()));
+                alum.setApellido(jtApellido.getText());
+                alum.setNombre(jtNombre.getText());
+                alum.setEstado(true);
+                alum.setFechaNac(Utileria.convertirLocalDate(jdFechaNac.getDate()));
+                adata.guardarAlumno(alum);
+                limpiarCeldas();
+            } catch (NumberFormatException e) {
+                Utileria.mensaje("Solo puede ingresar numeros en documento");
+            } catch (NullPointerException e) {
+                Utileria.mensaje("Llene todos los campos");
+            }
         }
     }//GEN-LAST:event_jbCargarActionPerformed
 
@@ -224,43 +234,54 @@ public class VistaAlumno2 extends javax.swing.JInternalFrame {
         if (contador == 0) {
             Utileria.mensaje("Debe buscar un alumno por dni primero, antes de efectuar una modificacion.");
         } else {
-            AlumnoData adata = new AlumnoData();
-            Alumno alum = new Alumno();
-            try {
-                alum = adata.buscarAlumnoPorDni(Integer.parseInt(jtDocumento.getText()));
-                alum.setDni(Integer.parseInt(jtDocumento.getText()));
-                alum.setApellido(jtApellido.getText());
-                alum.setNombre(jtNombre.getText());
-                alum.setEstado(jrEstado.isSelected());
-                // mater.setEstado(jrEstado.isSelected());
-                alum.setFechaNac(Utileria.convertirLocalDate(jdFechaNac.getDate()));
-                adata.modificarAlumno(alum);
-                Utileria.mensaje("Alumno modificado exitosamente");
-                limpiarCeldas();
-            } catch (NumberFormatException e) {
-                Utileria.mensaje("Solo ingrese numeros en documento");
-            } catch (NullPointerException e) {
+            if (jtDocumento.getText().equals("") || jtApellido.getText().equals("") || jtNombre.getText().equals("") || jdFechaNac.getDate().equals("")) {
                 Utileria.mensaje("Debe llenar todos los campos");
+            } else {
+                AlumnoData adata = new AlumnoData();
+                Alumno alum = new Alumno();
+                try {
+                    alum = adata.buscarAlumnoPorDni(Integer.parseInt(jtDocumento.getText()));
+                    alum.setDni(Integer.parseInt(jtDocumento.getText()));
+                    alum.setApellido(jtApellido.getText());
+                    alum.setNombre(jtNombre.getText());
+                    alum.setEstado(jrEstado.isSelected());
+                    alum.setFechaNac(Utileria.convertirLocalDate(jdFechaNac.getDate()));
+                    adata.modificarAlumno(alum);
+                    Utileria.mensaje("Alumno modificado exitosamente");
+                    limpiarCeldas();
+                    contador = 0;
+                } catch (NumberFormatException e) {
+                    Utileria.mensaje("Solo ingrese numeros en documento");
+                } catch (NullPointerException e) {
+                    Utileria.mensaje("Debe llenar todos los campos");
+                }
             }
         }
-
     }//GEN-LAST:event_jbModificarActionPerformed
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
-        AlumnoData adata = new AlumnoData();
-        Alumno alum = new Alumno();
-        try {
-            int dni = Integer.parseInt(jtDocumento.getText());
-            alum = adata.buscarAlumnoPorDni(dni);
-            Object[] op = {"Aceptar", "Cancelar"};
-            int i = JOptionPane.showOptionDialog(this, "Esta seguro que desea dar de baja al alumno: " +"\n"+ alum.stringEliminar(), title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, frameIcon, op, "Aceptar");
-            if (i == JOptionPane.YES_OPTION) {
-                adata.eliminarAlumno(alum.getIdAlumno());
-                Utileria.mensaje("Se dio de baja al alumno");
-                limpiarCeldas();
+        if (contador == 0) {
+            Utileria.mensaje("Debe buscar un alumno por DNI primero, para eliminarlo.");
+        } else {
+            if (jtDocumento.getText().equals("")) {
+                Utileria.mensaje("Debe completar el campo DNI");
+            } else {
+                AlumnoData adata = new AlumnoData();
+                Alumno alum = new Alumno();
+                try {
+                    int dni = Integer.parseInt(jtDocumento.getText());
+                    alum = adata.buscarAlumnoPorDni(dni);
+                    Object[] op = {"Aceptar", "Cancelar"};
+                    int i = JOptionPane.showOptionDialog(this, "Esta seguro que desea dar de baja al alumno: " + "\n" + alum.stringEliminar(), title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, frameIcon, op, "Aceptar");
+                    if (i == JOptionPane.YES_OPTION) {
+                        adata.eliminarAlumno(alum.getIdAlumno());
+                        limpiarCeldas();
+                        contador = 0;
+                    }
+                } catch (NumberFormatException e) {
+                    Utileria.mensaje("Solo puede ingresar numeros en documento");
+                }
             }
-        } catch (NumberFormatException e) {
-            Utileria.mensaje("Solo puede ingresar numeros en documento");
         }
     }//GEN-LAST:event_jbEliminarActionPerformed
 
