@@ -41,10 +41,19 @@ public class VistaNotas extends javax.swing.JInternalFrame {
         jbSalir = new javax.swing.JButton();
         jbGuardar = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Carga de notas");
+        setBackground(new java.awt.Color(213, 220, 223));
 
+        jLabel1.setFont(new java.awt.Font("Bell MT", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(80, 103, 115));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("CARGA DE NOTAS");
+
+        jSeparator1.setBackground(new java.awt.Color(80, 103, 115));
+        jSeparator1.setForeground(new java.awt.Color(80, 103, 115));
+
+        jtNotas.setBackground(new java.awt.Color(213, 220, 223));
+        jtNotas.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jtNotas.setForeground(new java.awt.Color(80, 103, 115));
         jtNotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -56,25 +65,41 @@ public class VistaNotas extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtNotas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jtNotas.setSelectionBackground(new java.awt.Color(80, 103, 115));
+        jtNotas.setSelectionForeground(new java.awt.Color(213, 220, 223));
         jScrollPane1.setViewportView(jtNotas);
 
-        jLabel2.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(80, 103, 115));
         jLabel2.setText("Seleccione un alumno:");
 
+        jcAlumnos.setBackground(new java.awt.Color(213, 220, 223));
+        jcAlumnos.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jcAlumnos.setForeground(new java.awt.Color(80, 103, 115));
+        jcAlumnos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jcAlumnos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcAlumnosActionPerformed(evt);
             }
         });
 
+        jbSalir.setBackground(new java.awt.Color(80, 103, 115));
+        jbSalir.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jbSalir.setForeground(new java.awt.Color(213, 220, 223));
         jbSalir.setText("Cerrar");
+        jbSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbSalirActionPerformed(evt);
             }
         });
 
+        jbGuardar.setBackground(new java.awt.Color(80, 103, 115));
+        jbGuardar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jbGuardar.setForeground(new java.awt.Color(213, 220, 223));
         jbGuardar.setText("Guardar");
+        jbGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbGuardarActionPerformed(evt);
@@ -99,18 +124,19 @@ public class VistaNotas extends javax.swing.JInternalFrame {
                         .addComponent(jcAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jSeparator1)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jcAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)

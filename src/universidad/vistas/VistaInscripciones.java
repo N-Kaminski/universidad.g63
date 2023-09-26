@@ -48,25 +48,36 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
         jbSalir = new javax.swing.JButton();
         jbAnularIns = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Formulario de Inscripcion");
+        setBackground(new java.awt.Color(213, 220, 223));
 
-        jLabel2.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jLabel1.setBackground(new java.awt.Color(80, 103, 115));
+        jLabel1.setFont(new java.awt.Font("Bell MT", 1, 32)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(80, 103, 115));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("FORMULARIO DE INSCRIPCION");
+
+        jLabel2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(80, 103, 115));
         jLabel2.setText("Seleccione un alumno:");
 
+        jcAlumnos.setBackground(new java.awt.Color(213, 220, 223));
+        jcAlumnos.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jcAlumnos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jcAlumnos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcAlumnosActionPerformed(evt);
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(80, 103, 115));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Listado de Materias");
 
+        jrMatIns.setBackground(new java.awt.Color(213, 220, 223));
         buttonGroup1.add(jrMatIns);
         jrMatIns.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jrMatIns.setForeground(new java.awt.Color(80, 103, 115));
         jrMatIns.setText("Materias inscriptas");
         jrMatIns.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,8 +85,10 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
             }
         });
 
+        jrMatNoIns.setBackground(new java.awt.Color(213, 220, 223));
         buttonGroup1.add(jrMatNoIns);
         jrMatNoIns.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jrMatNoIns.setForeground(new java.awt.Color(80, 103, 115));
         jrMatNoIns.setText("Materias no inscriptas");
         jrMatNoIns.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,6 +96,12 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
             }
         });
 
+        jSeparator1.setBackground(new java.awt.Color(80, 103, 115));
+        jSeparator1.setForeground(new java.awt.Color(80, 103, 115));
+
+        jtMaterias.setBackground(new java.awt.Color(213, 220, 223));
+        jtMaterias.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jtMaterias.setForeground(new java.awt.Color(80, 103, 115));
         jtMaterias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -94,23 +113,38 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtMaterias.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jtMaterias.setSelectionBackground(new java.awt.Color(80, 103, 115));
+        jtMaterias.setSelectionForeground(new java.awt.Color(213, 220, 223));
         jScrollPane1.setViewportView(jtMaterias);
 
+        jbInscribir.setBackground(new java.awt.Color(80, 103, 115));
+        jbInscribir.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jbInscribir.setForeground(new java.awt.Color(213, 220, 223));
         jbInscribir.setText("Inscribir");
+        jbInscribir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbInscribir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbInscribirActionPerformed(evt);
             }
         });
 
+        jbSalir.setBackground(new java.awt.Color(80, 103, 115));
+        jbSalir.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jbSalir.setForeground(new java.awt.Color(213, 220, 223));
         jbSalir.setText("Cerrar");
+        jbSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbSalirActionPerformed(evt);
             }
         });
 
+        jbAnularIns.setBackground(new java.awt.Color(80, 103, 115));
+        jbAnularIns.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jbAnularIns.setForeground(new java.awt.Color(213, 220, 223));
         jbAnularIns.setText("Anular Inscripcion");
+        jbAnularIns.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbAnularIns.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbAnularInsActionPerformed(evt);
@@ -121,28 +155,33 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jrMatIns)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jrMatNoIns))
+                        .addGap(48, 48, 48)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jcAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jbInscribir)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbAnularIns)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbSalir))
-                    .addComponent(jSeparator1)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(45, Short.MAX_VALUE))
+                        .addGap(67, 67, 67)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jrMatIns)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jrMatNoIns))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                                    .addComponent(jcAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jbInscribir)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jbAnularIns)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jbSalir))))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,10 +189,10 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jcAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -167,7 +206,7 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
                     .addComponent(jbInscribir)
                     .addComponent(jbSalir)
                     .addComponent(jbAnularIns))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jSeparator1.getAccessibleContext().setAccessibleDescription("");

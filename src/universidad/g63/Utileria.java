@@ -3,11 +3,15 @@ package universidad.g63;
 import java.awt.Dimension;
 import java.time.*;
 import java.util.Date;
+import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import universidad.vistas.*;
+import static universidad.vistas.Escritorio.escritorio;
 
 public class Utileria {
 
@@ -40,5 +44,16 @@ public class Utileria {
             return date;
         }
     }
-
+    
+ public static void fondo(JDesktopPane escritorio, JInternalFrame ventana, ImageIcon icono) {
+        escritorio.removeAll();
+        escritorio.repaint();
+        ventana.setVisible(true);
+        JLabel fondo = new JLabel(icono);
+        fondo.setBounds(0, 0, icono.getIconWidth(), icono.getIconHeight());
+        escritorio.add(fondo, JLayeredPane.FRAME_CONTENT_LAYER);
+        escritorio.add(ventana);
+        escritorio.moveToFront(ventana);
+        Utileria.centrarInternalFrame(escritorio, ventana);
+    }
 } // llave final

@@ -40,10 +40,16 @@ public class VistaConAlumXMat extends javax.swing.JInternalFrame {
         jcMateria = new javax.swing.JComboBox<>();
         jbSalir = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Listado de Alumnos por Materia");
+        setBackground(new java.awt.Color(213, 220, 223));
 
+        jLabel1.setFont(new java.awt.Font("Bell MT", 1, 30)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(80, 103, 115));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("ALUMNOS POR MATERIA");
+
+        jtAlumnos.setBackground(new java.awt.Color(213, 220, 223));
+        jtAlumnos.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jtAlumnos.setForeground(new java.awt.Color(80, 103, 115));
         jtAlumnos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -55,17 +61,26 @@ public class VistaConAlumXMat extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtAlumnos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jtAlumnos.setSelectionBackground(new java.awt.Color(80, 103, 115));
+        jtAlumnos.setSelectionForeground(new java.awt.Color(213, 220, 223));
         jScrollPane1.setViewportView(jtAlumnos);
 
-        jLabel2.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(80, 103, 115));
         jLabel2.setText("Seleccione una Materia:");
 
+        jcMateria.setBackground(new java.awt.Color(213, 220, 223));
+        jcMateria.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jcMateria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcMateriaActionPerformed(evt);
             }
         });
 
+        jbSalir.setBackground(new java.awt.Color(80, 103, 115));
+        jbSalir.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jbSalir.setForeground(new java.awt.Color(213, 220, 223));
         jbSalir.setText("Cerrar");
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,7 +103,7 @@ public class VistaConAlumXMat extends javax.swing.JInternalFrame {
                     .addComponent(jbSalir)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jSeparator1))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,12 +114,12 @@ public class VistaConAlumXMat extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jcMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbSalir)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -119,9 +134,10 @@ public class VistaConAlumXMat extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jcMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcMateriaActionPerformed
-        // TODO add your handling code here:
         if (jcMateria.getSelectedIndex() >= 1) {
             actualizarTabla();
+        } else if ( jcMateria.getSelectedIndex()==0){
+            borrarFilas();
         }
     }//GEN-LAST:event_jcMateriaActionPerformed
 
@@ -135,13 +151,12 @@ public class VistaConAlumXMat extends javax.swing.JInternalFrame {
     private void cargarCombo() {
         Materia materiaVacia = new Materia();
         materiaVacia.setNombre("Seleccione una materia");
-        jcMateria.addItem(materiaVacia);
-        MateriaData md = new MateriaData();
-        List<Materia> list = md.listarMateria();
-        for (Materia mat : list) {
-            jcMateria.addItem(mat);
-        }
-        // jcMateria.setSelectedIndex(-1);
+            jcMateria.addItem(materiaVacia);
+            MateriaData md = new MateriaData();
+            List<Materia> list = md.listarMateria();
+            for (Materia mat : list) {
+                jcMateria.addItem(mat);
+            }
     }
 
     private void borrarFilas() {
