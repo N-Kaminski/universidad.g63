@@ -47,6 +47,7 @@ public class MateriaData {
             ps.close();
         } catch (SQLIntegrityConstraintViolationException ex) {
             Utileria.mensaje("Ya existe una materia con ese nombre");
+//            Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -62,8 +63,11 @@ public class MateriaData {
             ps.setBoolean(3, materia.isEstado());
             ps.setInt(4, materia.getIdMateria());
             ps.executeUpdate();
-
+            Utileria.mensaje("Materia modificada exitosamente");
             ps.close();
+        } catch (SQLIntegrityConstraintViolationException ex) {
+            Utileria.mensaje("No se pudo modificar");
+//            Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -153,7 +157,7 @@ public class MateriaData {
                         mat.setAño(rs.getInt("año"));
                         mat.setEstado(rs.getBoolean("estado"));
                     } else {
-                        Utileria.mensaje("La materia no existe con ese codigo");
+                        Utileria.mensaje("La materia no existe");
                         mat.setIdMateria(0);
                     }
                 } catch (SQLException ex) {
@@ -188,7 +192,7 @@ public class MateriaData {
 
     public List<Materia> listarMateria() {
         ArrayList<Materia> listaMat = new ArrayList<>();
-        try (PreparedStatement ps = conec.prepareStatement("SELECT idMateria, nombre, año, estado FROM materia WHERE estado = 1")){;
+        try (PreparedStatement ps = conec.prepareStatement("SELECT idMateria, nombre, año, estado FROM materia WHERE estado = 1")) {;
             try (ResultSet rs = ps.executeQuery();) {
                 while (rs.next()) {
                     Materia materia = new Materia();

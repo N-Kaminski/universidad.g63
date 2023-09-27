@@ -6,6 +6,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -18,13 +19,13 @@ import universidad.g63.Utileria;
  * @author Nicolas Kaminski
  */
 public class AlumnoData {
-
+    
     private Connection conec;
-
+    
     public AlumnoData() {
         conec = Conexion.getConexion();
     }
-
+    
     public void guardarAlumno(Alumno alumno) {
         String ssql = "INSERT INTO alumno (dni, apellido, nombre, fechaNac, estado) VALUES (?, ?, ?, ?, ?)";
         try {
@@ -42,11 +43,14 @@ public class AlumnoData {
             rs.close();
             ps.close();
             Utileria.mensaje("Se cargo el alumno correctamente");
+        } catch (SQLIntegrityConstraintViolationException ex) {
+            Utileria.mensaje("Ya existe un alumno con ese DNI");
+//            Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     public void modificarAlumno(Alumno alumno) {
         String ssql = "UPDATE alumno SET dni=?, apellido=?, nombre=?, fechaNac=?, estado=? WHERE idAlumno=?";
         try {
@@ -63,7 +67,7 @@ public class AlumnoData {
             Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     public Alumno buscarAlumno(int idAlumno) {
         Alumno alumno = null;
         String buscarAlumno = "SELECT  dni, apellido, nombre, fechaNac, estado FROM alumno WHERE idAlumno=?";
@@ -72,7 +76,7 @@ public class AlumnoData {
             ps = conec.prepareStatement(buscarAlumno);
             ps.setInt(1, idAlumno);
             ResultSet rs = ps.executeQuery();
-
+            
             if (rs.next()) {
                 alumno = new Alumno();
                 alumno.setIdAlumno(rs.getInt(1));
@@ -90,9 +94,9 @@ public class AlumnoData {
             Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
         }
         return alumno;
-
+        
     }
-
+    
     public Alumno buscarAlumnoPorDni(int dni) {
         Alumno alumno = null;
         String buscarDni = "SELECT  idAlumno, dni, apellido, nombre, fechaNac, estado FROM alumno WHERE dni=?";
@@ -101,7 +105,7 @@ public class AlumnoData {
             ps = conec.prepareStatement(buscarDni);
             ps.setInt(1, dni);
             ResultSet rs = ps.executeQuery();
-
+            
             if (rs.next()) {
                 alumno = new Alumno();
                 alumno.setIdAlumno(rs.getInt("idAlumno"));
@@ -119,7 +123,7 @@ public class AlumnoData {
         }
         return alumno;
     }
-
+    
     public List<Alumno> obtenerAlumnos() {
         ArrayList<Alumno> lista = new ArrayList<>();
         try (PreparedStatement ps = conec.prepareStatement("SELECT idAlumno, dni, apellido, nombre, fechaNac, estado  FROM alumno WHERE estado =1")) {
@@ -143,7 +147,7 @@ public class AlumnoData {
         }
         return lista;
     }
-
+    
     public void eliminarAlumno(int id) {
         Alumno alum = new Alumno();
         alum = buscarAlumno(id);
@@ -189,7 +193,7 @@ public class AlumnoData {
         }
         return lista;
     }
-
+    
     private String formarSQL(int estado, int orden) {
         String sql = "SELECT idAlumno, dni, apellido, nombre, fechaNac, estado FROM alumno";
         switch (estado) {
@@ -221,5 +225,5 @@ public class AlumnoData {
         }
         return sql;
     }
-
+    
 }  // LLAVE DE CLASE

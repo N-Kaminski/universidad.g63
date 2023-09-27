@@ -231,6 +231,7 @@ public class Escritorio extends javax.swing.JFrame {
     private void jmListaAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmListaAlumnosActionPerformed
         ListaAlumnos va = new ListaAlumnos();
         ImageIcon icono = new ImageIcon(getClass().getResource("/Imagenes/fondo.png"));
+        va.setTitle("Listado de Alumnos");
         Utileria.fondo(escritorio, va, icono);
     }//GEN-LAST:event_jmListaAlumnosActionPerformed
 
