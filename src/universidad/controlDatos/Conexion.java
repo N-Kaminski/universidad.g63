@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 public class Conexion {
 
-private static String url = "jdbc:mariadb://localhost/universidad.g63-2";    // cambiar nombre a base de datos: todo lo de la ultima barra /
+private static String url = "jdbc:mariadb://localhost/universidad.g63";    // cambiar nombre a base de datos: todo lo de la ultima barra /
 private static String usuario = "root";
 private static String password = "";
 private static Conexion conexion;// = null;

@@ -50,6 +50,8 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
         jbAnularIns = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(213, 220, 223));
+        setBorder(new javax.swing.border.LineBorder(new java.awt.Color(80, 103, 115), 1, true));
+        setFrameIcon(null);
 
         jLabel1.setBackground(new java.awt.Color(80, 103, 115));
         jLabel1.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
@@ -70,10 +72,10 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Bell MT", 1, 20)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(80, 103, 115));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Listado de Materias");
+        jLabel3.setText("Listado de materias");
 
         jrMatIns.setBackground(new java.awt.Color(213, 220, 223));
         buttonGroup1.add(jrMatIns);
@@ -117,6 +119,8 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
         jtMaterias.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jtMaterias.setSelectionBackground(new java.awt.Color(80, 103, 115));
         jtMaterias.setSelectionForeground(new java.awt.Color(213, 220, 223));
+        jtMaterias.getTableHeader().setResizingAllowed(false);
+        jtMaterias.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jtMaterias);
 
         jbInscribir.setBackground(new java.awt.Color(80, 103, 115));
@@ -157,9 +161,9 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addContainerGap(27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jSeparator1)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
@@ -168,7 +172,7 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
                         .addComponent(jrMatNoIns))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                         .addComponent(jcAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jbInscribir)
@@ -177,11 +181,12 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jbSalir))
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -189,9 +194,9 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jcAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jrMatIns)
                     .addComponent(jrMatNoIns))
@@ -202,7 +207,7 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
                     .addComponent(jbInscribir)
                     .addComponent(jbSalir)
                     .addComponent(jbAnularIns))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jSeparator1.getAccessibleContext().setAccessibleDescription("");

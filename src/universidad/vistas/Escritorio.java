@@ -187,7 +187,7 @@ public class Escritorio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jmFormAlumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmFormAlumActionPerformed
-        VistaAlumno2 va = new VistaAlumno2();
+        VistaAlumno va = new VistaAlumno();
         ImageIcon icono = new ImageIcon(getClass().getResource("/Imagenes/fondo.png"));
         Utileria.fondo(escritorio, va, icono);
     }//GEN-LAST:event_jmFormAlumActionPerformed
