@@ -62,6 +62,8 @@ public class ListaAlumnos1 extends javax.swing.JInternalFrame {
 
         jrTodos.setBackground(new java.awt.Color(213, 220, 223));
         buttonGroup1.add(jrTodos);
+        jrTodos.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jrTodos.setForeground(new java.awt.Color(80, 103, 115));
         jrTodos.setText("Todos");
         jrTodos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,6 +73,7 @@ public class ListaAlumnos1 extends javax.swing.JInternalFrame {
 
         jrActivos.setBackground(new java.awt.Color(213, 220, 223));
         buttonGroup1.add(jrActivos);
+        jrActivos.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jrActivos.setForeground(new java.awt.Color(80, 103, 115));
         jrActivos.setText("Activos");
         jrActivos.addActionListener(new java.awt.event.ActionListener() {
@@ -81,6 +84,7 @@ public class ListaAlumnos1 extends javax.swing.JInternalFrame {
 
         jrInactivos.setBackground(new java.awt.Color(213, 220, 223));
         buttonGroup1.add(jrInactivos);
+        jrInactivos.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jrInactivos.setForeground(new java.awt.Color(80, 103, 115));
         jrInactivos.setText("Inactivos");
         jrInactivos.addActionListener(new java.awt.event.ActionListener() {
@@ -123,12 +127,9 @@ public class ListaAlumnos1 extends javax.swing.JInternalFrame {
                         .addComponent(jrInactivos)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jcSort, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jbSalir, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(27, Short.MAX_VALUE))
+                    .addComponent(jbSalir, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

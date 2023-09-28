@@ -67,7 +67,7 @@ public class VistaMateria3 extends javax.swing.JInternalFrame {
         jtCodigo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         jrNueva.setBackground(new java.awt.Color(213, 220, 223));
-        jrNueva.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jrNueva.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jrNueva.setForeground(new java.awt.Color(80, 103, 115));
         jrNueva.setSelected(true);
         jrNueva.setText("Nueva");
@@ -78,7 +78,7 @@ public class VistaMateria3 extends javax.swing.JInternalFrame {
         });
 
         jrModificar.setBackground(new java.awt.Color(213, 220, 223));
-        jrModificar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jrModificar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jrModificar.setForeground(new java.awt.Color(80, 103, 115));
         jrModificar.setText("Modificar");
         jrModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
