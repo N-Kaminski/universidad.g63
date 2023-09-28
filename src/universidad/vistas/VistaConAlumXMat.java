@@ -140,7 +140,7 @@ public class VistaConAlumXMat extends javax.swing.JInternalFrame {
     private void jcMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcMateriaActionPerformed
         if (jcMateria.getSelectedIndex() >= 1) {
             actualizarTabla();
-        } else if ( jcMateria.getSelectedIndex()==0){
+        } else if (jcMateria.getSelectedIndex() == 0) {
             borrarFilas();
         }
     }//GEN-LAST:event_jcMateriaActionPerformed
@@ -155,12 +155,12 @@ public class VistaConAlumXMat extends javax.swing.JInternalFrame {
     private void cargarCombo() {
         Materia materiaVacia = new Materia();
         materiaVacia.setNombre("Seleccione una materia");
-            jcMateria.addItem(materiaVacia);
-            MateriaData md = new MateriaData();
-            List<Materia> list = md.listarMateria();
-            for (Materia mat : list) {
-                jcMateria.addItem(mat);
-            }
+        jcMateria.addItem(materiaVacia);
+        MateriaData md = new MateriaData();
+        List<Materia> list = md.listarMateria();
+        for (Materia mat : list) {
+            jcMateria.addItem(mat);
+        }
     }
 
     private void borrarFilas() {

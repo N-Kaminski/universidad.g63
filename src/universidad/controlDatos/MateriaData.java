@@ -3,12 +3,6 @@ package universidad.controlDatos;
 import universidad.entidades.Materia;
 import java.sql.Connection;
 import java.sql.*;
-//import java.sql.PreparedStatement;
-//import java.sql.ResultSet;
-//import java.sql.SQLException;
-//import java.sql.SQLIntegrityConstraintViolationException;
-//import java.sql.SQLSyntaxErrorException;
-//import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -29,16 +23,13 @@ public class MateriaData {
 
     public void cargarMateria(Materia materia) {
         String cargarMateria = "INSERT INTO materia  (nombre, año, estado) VALUES (?, ?, ?)";
-
         try {
             PreparedStatement ps = conec.prepareStatement(cargarMateria, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, materia.getNombre());
             ps.setInt(2, materia.getAño());
             ps.setBoolean(3, materia.isEstado());
             ps.executeUpdate();
-
             ResultSet rs = ps.getGeneratedKeys();
-
             if (rs.next()) {
                 materia.setIdMateria(rs.getInt(1));
                 Utileria.mensaje("Materia cargada");
@@ -81,16 +72,14 @@ public class MateriaData {
             ps = conec.prepareStatement(buscarMateria);
             ps.setInt(1, idMateria);
             ResultSet rs = ps.executeQuery();
-
             if (rs.next()) {
                 materia = new Materia();
                 materia.setIdMateria(rs.getInt("idMateria"));
                 materia.setNombre(rs.getString("nombre"));
                 materia.setAño(rs.getInt("año"));
-                materia.setEstado(rs.getBoolean("estado")); // ver si en lugar de "estado" va= materia.setEstado(true)
+                materia.setEstado(rs.getBoolean("estado")); 
             } else {
                 Utileria.mensaje("La materia no existe con ese codigo");
-
             }
             ps.close();
         } catch (SQLException ex) {
@@ -107,13 +96,12 @@ public class MateriaData {
             ps = conec.prepareStatement(bm);
             ps.setString(1, nombre);
             ResultSet rs = ps.executeQuery();
-
             if (rs.next()) {
                 materia = new Materia();
                 materia.setIdMateria(rs.getInt("idMateria"));
                 materia.setNombre(rs.getString("nombre"));
                 materia.setAño(rs.getInt("año"));
-                materia.setEstado(rs.getBoolean("estado")); // ver si en lugar de "estado" va= materia.setEstado(true)
+                materia.setEstado(rs.getBoolean("estado"));
             } else {
                 Utileria.mensaje("La materia no existe");
             }
@@ -179,11 +167,6 @@ public class MateriaData {
             PreparedStatement ps = conec.prepareStatement(eliminarMateria);
             ps.setInt(1, id);
             int fila = ps.executeUpdate();
-            /*
-            if (fila == 1) {
-                JOptionPane.showMessageDialog(null, "Se dio de baja la materia");
-            }
-             */
             ps.close();
         } catch (SQLException ex) {
             Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);

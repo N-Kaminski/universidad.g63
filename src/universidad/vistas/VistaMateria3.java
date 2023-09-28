@@ -11,7 +11,6 @@ import universidad.g63.Utileria;
  */
 public class VistaMateria3 extends javax.swing.JInternalFrame {
 
-    // MateriaData md = new MateriaData();
     public VistaMateria3() {
         initComponents();
         defaultNueva();
@@ -297,8 +296,7 @@ public class VistaMateria3 extends javax.swing.JInternalFrame {
                 mater.setNombre(jtNombre.getText());
                 mater.setAño(Integer.parseInt(jtAnno.getText()));
                 mater.setEstado(jrEstado.isSelected());
-                md.modificarMateria(mater);
-                
+                md.modificarMateria(mater);                
                 limpiarCeldas();
                 defaultModificar();
             } catch (NumberFormatException ex) {

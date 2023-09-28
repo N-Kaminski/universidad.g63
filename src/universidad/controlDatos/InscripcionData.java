@@ -47,13 +47,6 @@ public class InscripcionData {
         }
     }
 
-    //  INCOMPLETO
-    public List<Inscripcion> obtenerInscripciones() {
-        ArrayList<Inscripcion> lista = new ArrayList<>();
-
-        return lista;
-    }
-
     //      COMPLETADO!!!
     public List<Inscripcion> obtenerInscripcionesPorAlumno(int idAlumno) {
         List<Inscripcion> lista = new ArrayList<>();
@@ -61,7 +54,6 @@ public class InscripcionData {
         AlumnoData adata = new AlumnoData();
         Alumno alum = new Alumno();
         alum = adata.buscarAlumno(idAlumno);
-       // inscrip.setAlumno(alum);      | NOSE PARA QUE ESTA PERO FUNCIONA IGUAL XD |
         String sql = "SELECT inscripcion.idMateria, materia.nombre, inscripcion.nota\n"
                 + "FROM inscripcion JOIN materia ON(inscripcion.idMateria=materia.idMateria)\n"
                 + "WHERE inscripcion.idAlumno = ?";
@@ -122,9 +114,6 @@ public class InscripcionData {
                     + "FROM materia \n"
                     + "WHERE idMateria not in (SELECT materia.idMateria FROM inscripcion JOIN materia ON(materia.idMateria=inscripcion.idMateria) WHERE inscripcion.idAlumno = ?) \n"
                     + "AND estado = 1";
-//            String sql = "SELECT materia.idMateria, nombre, año, estado \n"
-//                    + "FROM materia \n"
-//                    + "WHERE idMateria not in (SELECT materia.idMateria FROM inscripcion JOIN materia ON(materia.idMateria=inscripcion.idMateria) WHERE inscripcion.idAlumno = ?)";
             PreparedStatement ps = conec.prepareStatement(sql);
             ps.setInt(1, idAlumno);
             ResultSet rs = ps.executeQuery();
@@ -134,10 +123,7 @@ public class InscripcionData {
                 matt.setIdMateria(rs.getInt("idMateria"));
                 matt.setNombre(rs.getString("nombre"));
                 matt.setAño(rs.getInt("año"));
-//                matt.setEstado(rs.getBoolean("estado"));
-//                if (matt.isEstado() == true) {
                 lista.add(matt);
-//                }
             }
             rs.close();
             ps.close();
@@ -176,10 +162,9 @@ public class InscripcionData {
         } catch (SQLException ex) {
             Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
-    //  INCOMPLETO
+    //      COMPLETADO!!!
     public List<Alumno> obtenerAlumnosPorMateria(int idMateria) {
         ArrayList<Alumno> lista = new ArrayList<>();
         String obtenerAlumno = "SELECT  alumno.dni, alumno.apellido, alumno.nombre, alumno.estado FROM inscripcion JOIN "

@@ -76,7 +76,7 @@
               <Component id="jScrollPane1" min="-2" pref="249" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jbNuevoAlum" alignment="1" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="jbNuevoAlum" alignment="1" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jbSalir" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jbEditarAlum" alignment="3" min="-2" max="-2" attributes="0"/>

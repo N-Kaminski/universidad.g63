@@ -70,8 +70,8 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
         jLabel1.setPreferredSize(new java.awt.Dimension(90, 20));
 
         jtDocumento.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jtDocumento.setForeground(new java.awt.Color(80, 103, 115));
-        jtDocumento.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtDocumento.setForeground(new java.awt.Color(0, 0, 0));
+        jtDocumento.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
         jbBuscar.setBackground(new java.awt.Color(80, 103, 115));
         jbBuscar.setForeground(new java.awt.Color(213, 220, 223));
@@ -90,8 +90,8 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
         });
 
         jtApellido.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jtApellido.setForeground(new java.awt.Color(80, 103, 115));
-        jtApellido.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtApellido.setForeground(new java.awt.Color(0, 0, 0));
+        jtApellido.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
         jLabel2.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(80, 103, 115));
@@ -110,8 +110,8 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
         jLabel3.setPreferredSize(new java.awt.Dimension(90, 20));
 
         jtNombre.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jtNombre.setForeground(new java.awt.Color(80, 103, 115));
-        jtNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtNombre.setForeground(new java.awt.Color(0, 0, 0));
+        jtNombre.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
         jrEstado.setBackground(new java.awt.Color(213, 220, 223));
         jrEstado.setSelected(true);
@@ -192,11 +192,6 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(85, 85, 85)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -225,8 +220,13 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(55, Short.MAX_VALUE))
+                        .addComponent(jbSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,13 +256,13 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jdFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addGap(18, 53, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jbSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbCargar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         pack();
@@ -284,7 +284,6 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
                     int i = JOptionPane.showOptionDialog(this, "Esta seguro que desea dar de baja al alumno: " + "\n" + alum.stringEliminar(), title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, frameIcon, op, "Aceptar");
                     if (i == JOptionPane.YES_OPTION) {
                         adata.eliminarAlumno(alum.getIdAlumno());
-//                        limpiarCeldas();
                         contador = 0;
                     }
                 } catch (NumberFormatException e) {

@@ -160,7 +160,6 @@ public class VistaNotas extends javax.swing.JInternalFrame {
                 double nota = pedirNumero();
                 Idata.actualizarNota(alum.getIdAlumno(), (int) jtNotas.getValueAt(jtNotas.getSelectedRow(), 0), nota);
             } catch (NullPointerException ex) {
-
             }
             actualizarCombo();
         } else {

@@ -80,7 +80,6 @@ public class AlumnoData {
             if (rs.next()) {
                 alumno = new Alumno();
                 alumno.setIdAlumno(rs.getInt(1));
-//                alumno.setIdAlumno(rs.getInt("idAlumno"));
                 alumno.setDni(rs.getInt("dni"));
                 alumno.setApellido(rs.getString("apellido"));
                 alumno.setApellido(rs.getString("nombre"));
@@ -105,7 +104,6 @@ public class AlumnoData {
             ps = conec.prepareStatement(buscarDni);
             ps.setInt(1, dni);
             ResultSet rs = ps.executeQuery();
-            
             if (rs.next()) {
                 alumno = new Alumno();
                 alumno.setIdAlumno(rs.getInt("idAlumno"));
