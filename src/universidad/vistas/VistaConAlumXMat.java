@@ -41,6 +41,8 @@ public class VistaConAlumXMat extends javax.swing.JInternalFrame {
         jbSalir = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(213, 220, 223));
+        setBorder(new javax.swing.border.LineBorder(new java.awt.Color(80, 103, 115), 1, true));
+        setFrameIcon(null);
 
         jLabel1.setFont(new java.awt.Font("Bell MT", 1, 30)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(80, 103, 115));
@@ -64,6 +66,8 @@ public class VistaConAlumXMat extends javax.swing.JInternalFrame {
         jtAlumnos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jtAlumnos.setSelectionBackground(new java.awt.Color(80, 103, 115));
         jtAlumnos.setSelectionForeground(new java.awt.Color(213, 220, 223));
+        jtAlumnos.getTableHeader().setResizingAllowed(false);
+        jtAlumnos.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jtAlumnos);
 
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -92,18 +96,18 @@ public class VistaConAlumXMat extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                         .addComponent(jcMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jbSalir)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jSeparator1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jbSalir, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

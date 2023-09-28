@@ -39,7 +39,9 @@ public class VistaMateria3 extends javax.swing.JInternalFrame {
         jSeparator2 = new javax.swing.JSeparator();
 
         setBackground(new java.awt.Color(213, 220, 223));
+        setBorder(new javax.swing.border.LineBorder(new java.awt.Color(80, 103, 115), 1, true));
         setResizable(true);
+        setFrameIcon(null);
 
         jLabel5.setFont(new java.awt.Font("Bell MT", 1, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(80, 103, 115));

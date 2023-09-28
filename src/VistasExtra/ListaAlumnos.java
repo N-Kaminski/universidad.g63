@@ -41,6 +41,12 @@ public class ListaAlumnos extends javax.swing.JInternalFrame {
         jbEditarAlum = new javax.swing.JButton();
         jbCambiarEstado = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(213, 220, 223));
+        setBorder(new javax.swing.border.LineBorder(new java.awt.Color(80, 103, 115), 1, true));
+
+        jtListaAlum.setBackground(new java.awt.Color(213, 220, 223));
+        jtListaAlum.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jtListaAlum.setForeground(new java.awt.Color(80, 103, 115));
         jtListaAlum.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -52,8 +58,14 @@ public class ListaAlumnos extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtListaAlum.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jtListaAlum.setSelectionBackground(new java.awt.Color(80, 103, 115));
+        jtListaAlum.setSelectionForeground(new java.awt.Color(213, 220, 223));
+        jtListaAlum.getTableHeader().setResizingAllowed(false);
+        jtListaAlum.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jtListaAlum);
 
+        jrTodos.setBackground(new java.awt.Color(213, 220, 223));
         buttonGroup1.add(jrTodos);
         jrTodos.setText("Todos");
         jrTodos.addActionListener(new java.awt.event.ActionListener() {
@@ -62,7 +74,9 @@ public class ListaAlumnos extends javax.swing.JInternalFrame {
             }
         });
 
+        jrActivos.setBackground(new java.awt.Color(213, 220, 223));
         buttonGroup1.add(jrActivos);
+        jrActivos.setForeground(new java.awt.Color(80, 103, 115));
         jrActivos.setText("Activos");
         jrActivos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,7 +84,9 @@ public class ListaAlumnos extends javax.swing.JInternalFrame {
             }
         });
 
+        jrInactivos.setBackground(new java.awt.Color(213, 220, 223));
         buttonGroup1.add(jrInactivos);
+        jrInactivos.setForeground(new java.awt.Color(80, 103, 115));
         jrInactivos.setText("Inactivos");
         jrInactivos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,6 +94,8 @@ public class ListaAlumnos extends javax.swing.JInternalFrame {
             }
         });
 
+        jcSort.setBackground(new java.awt.Color(213, 220, 223));
+        jcSort.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jcSort.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Codigo", "DNI", "Apellido", "Nombre", "Fecha Nac." }));
         jcSort.setSelectedIndex(-1);
         jcSort.addActionListener(new java.awt.event.ActionListener() {
@@ -86,6 +104,8 @@ public class ListaAlumnos extends javax.swing.JInternalFrame {
             }
         });
 
+        jbSalir.setBackground(new java.awt.Color(80, 103, 115));
+        jbSalir.setForeground(new java.awt.Color(213, 220, 223));
         jbSalir.setText("Salir");
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,6 +113,8 @@ public class ListaAlumnos extends javax.swing.JInternalFrame {
             }
         });
 
+        jbNuevoAlum.setBackground(new java.awt.Color(80, 103, 115));
+        jbNuevoAlum.setForeground(new java.awt.Color(213, 220, 223));
         jbNuevoAlum.setText("Nuevo Alumno");
         jbNuevoAlum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,6 +122,8 @@ public class ListaAlumnos extends javax.swing.JInternalFrame {
             }
         });
 
+        jbEditarAlum.setBackground(new java.awt.Color(80, 103, 115));
+        jbEditarAlum.setForeground(new java.awt.Color(213, 220, 223));
         jbEditarAlum.setText("Editar Alumno");
         jbEditarAlum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,6 +131,8 @@ public class ListaAlumnos extends javax.swing.JInternalFrame {
             }
         });
 
+        jbCambiarEstado.setBackground(new java.awt.Color(80, 103, 115));
+        jbCambiarEstado.setForeground(new java.awt.Color(213, 220, 223));
         jbCambiarEstado.setText("Baja/Alta");
         jbCambiarEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,12 +178,13 @@ public class ListaAlumnos extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbSalir)
-                    .addComponent(jbNuevoAlum)
-                    .addComponent(jbEditarAlum)
-                    .addComponent(jbCambiarEstado))
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbNuevoAlum, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jbSalir)
+                        .addComponent(jbEditarAlum)
+                        .addComponent(jbCambiarEstado)))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
