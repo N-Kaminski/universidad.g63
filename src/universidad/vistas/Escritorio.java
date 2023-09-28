@@ -1,6 +1,5 @@
 package universidad.vistas;
 
-import VistasExtra.ListaAlumnos;
 import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -40,9 +39,8 @@ public class Escritorio extends javax.swing.JFrame {
         jmManipNotas = new javax.swing.JMenuItem();
         jmConsultas = new javax.swing.JMenu();
         jmCAlumXMat = new javax.swing.JMenuItem();
+        jmListaAlum = new javax.swing.JMenuItem();
         jmSalir = new javax.swing.JMenu();
-        jmExtra = new javax.swing.JMenu();
-        jmListaAlumnos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -81,6 +79,7 @@ public class Escritorio extends javax.swing.JFrame {
         jmFormAlum.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jmFormAlum.setForeground(new java.awt.Color(80, 103, 115));
         jmFormAlum.setText("Formulario de Alumno");
+        jmFormAlum.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmFormAlum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmFormAlumActionPerformed(evt);
@@ -92,6 +91,7 @@ public class Escritorio extends javax.swing.JFrame {
         jmFormMat.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jmFormMat.setForeground(new java.awt.Color(80, 103, 115));
         jmFormMat.setText("Formulario de Materia");
+        jmFormMat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmFormMat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmFormMatActionPerformed(evt);
@@ -103,6 +103,7 @@ public class Escritorio extends javax.swing.JFrame {
         jmManejoIns.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jmManejoIns.setForeground(new java.awt.Color(80, 103, 115));
         jmManejoIns.setText("Manejo de Inscripciones");
+        jmManejoIns.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmManejoIns.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmManejoInsActionPerformed(evt);
@@ -114,6 +115,7 @@ public class Escritorio extends javax.swing.JFrame {
         jmManipNotas.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jmManipNotas.setForeground(new java.awt.Color(80, 103, 115));
         jmManipNotas.setText("Manipulacion de notas");
+        jmManipNotas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmManipNotas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmManipNotasActionPerformed(evt);
@@ -132,12 +134,25 @@ public class Escritorio extends javax.swing.JFrame {
         jmCAlumXMat.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jmCAlumXMat.setForeground(new java.awt.Color(80, 103, 115));
         jmCAlumXMat.setText("Alumnos por Materia");
+        jmCAlumXMat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmCAlumXMat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmCAlumXMatActionPerformed(evt);
             }
         });
         jmConsultas.add(jmCAlumXMat);
+
+        jmListaAlum.setBackground(new java.awt.Color(213, 220, 223));
+        jmListaAlum.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jmListaAlum.setForeground(new java.awt.Color(80, 103, 115));
+        jmListaAlum.setText("Lista de Alumnos");
+        jmListaAlum.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jmListaAlum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmListaAlumActionPerformed(evt);
+            }
+        });
+        jmConsultas.add(jmListaAlum);
 
         jMenuBar1.add(jmConsultas);
 
@@ -151,24 +166,6 @@ public class Escritorio extends javax.swing.JFrame {
             }
         });
         jMenuBar1.add(jmSalir);
-
-        jmExtra.setForeground(new java.awt.Color(213, 220, 223));
-        jmExtra.setText("Extra");
-        jmExtra.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jmExtra.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-
-        jmListaAlumnos.setBackground(new java.awt.Color(213, 220, 223));
-        jmListaAlumnos.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jmListaAlumnos.setForeground(new java.awt.Color(80, 103, 115));
-        jmListaAlumnos.setText("Lista Alumnos");
-        jmListaAlumnos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmListaAlumnosActionPerformed(evt);
-            }
-        });
-        jmExtra.add(jmListaAlumnos);
-
-        jMenuBar1.add(jmExtra);
 
         setJMenuBar(jMenuBar1);
 
@@ -228,13 +225,6 @@ public class Escritorio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jmSalirMouseClicked
 
-    private void jmListaAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmListaAlumnosActionPerformed
-        ListaAlumnos va = new ListaAlumnos();
-        ImageIcon icono = new ImageIcon(getClass().getResource("/Imagenes/fondo.png"));
-        va.setTitle("Listado de Alumnos");
-        Utileria.fondo(escritorio, va, icono);
-    }//GEN-LAST:event_jmListaAlumnosActionPerformed
-
     private void jMenuBar1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuBar1MousePressed
         xMouse = evt.getX();
         yMouse = evt.getY();
@@ -245,6 +235,13 @@ public class Escritorio extends javax.swing.JFrame {
         int y = evt.getYOnScreen();
         this.setLocation(x - xMouse, y - yMouse);
     }//GEN-LAST:event_jMenuBar1MouseDragged
+
+    private void jmListaAlumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmListaAlumActionPerformed
+        ListaAlumnos1 va = new ListaAlumnos1();
+        ImageIcon icono = new ImageIcon(getClass().getResource("/Imagenes/fondo.png"));
+        va.setTitle("Listado de Alumnos");
+        Utileria.fondo(escritorio, va, icono);
+    }//GEN-LAST:event_jmListaAlumActionPerformed
 
     /**
      * @param args the command line arguments
@@ -287,10 +284,9 @@ public class Escritorio extends javax.swing.JFrame {
     private javax.swing.JMenu jmAdmins;
     private javax.swing.JMenuItem jmCAlumXMat;
     private javax.swing.JMenu jmConsultas;
-    private javax.swing.JMenu jmExtra;
     private javax.swing.JMenuItem jmFormAlum;
     private javax.swing.JMenuItem jmFormMat;
-    private javax.swing.JMenuItem jmListaAlumnos;
+    private javax.swing.JMenuItem jmListaAlum;
     private javax.swing.JMenuItem jmManejoIns;
     private javax.swing.JMenuItem jmManipNotas;
     private javax.swing.JMenu jmSalir;

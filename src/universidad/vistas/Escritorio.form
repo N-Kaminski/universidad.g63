@@ -45,6 +45,9 @@
                   <Color blue="73" green="67" red="50" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Formulario de Alumno"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor de Mano"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmFormAlumActionPerformed"/>
@@ -62,6 +65,9 @@
                   <Color blue="73" green="67" red="50" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Formulario de Materia"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor de Mano"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmFormMatActionPerformed"/>
@@ -79,6 +85,9 @@
                   <Color blue="73" green="67" red="50" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Manejo de Inscripciones"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor de Mano"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmManejoInsActionPerformed"/>
@@ -96,6 +105,9 @@
                   <Color blue="73" green="67" red="50" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Manipulacion de notas"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor de Mano"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmManipNotasActionPerformed"/>
@@ -129,9 +141,32 @@
                   <Color blue="73" green="67" red="50" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Alumnos por Materia"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor de Mano"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmCAlumXMatActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jmListaAlum">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="df" green="dc" red="d5" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Verdana" size="12" style="0"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="73" green="67" red="50" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Lista de Alumnos"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor de Mano"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmListaAlumActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -152,39 +187,6 @@
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jmSalirMouseClicked"/>
           </Events>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jmExtra">
-          <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="df" green="dc" red="d5" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Extra"/>
-            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Cursor de Mano"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Verdana" size="12" style="1"/>
-            </Property>
-          </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jmListaAlumnos">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="df" green="dc" red="d5" type="rgb"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Verdana" size="12" style="0"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="73" green="67" red="50" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Lista Alumnos"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmListaAlumnosActionPerformed"/>
-              </Events>
-            </MenuItem>
-          </SubComponents>
         </Menu>
       </SubComponents>
     </Menu>

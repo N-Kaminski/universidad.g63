@@ -1,18 +1,16 @@
-package VistasExtra;
+package universidad.vistas;
 
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import universidad.controlDatos.AlumnoData;
 import universidad.entidades.Alumno;
-import universidad.g63.Utileria;
-import universidad.vistas.*;
 
 /**
  *
  * @author Alesio
  */
-public class ListaAlumnos extends javax.swing.JInternalFrame {
+public class ListaAlumnos1 extends javax.swing.JInternalFrame {
 
     private DefaultTableModel modelo = new DefaultTableModel() {
         public boolean isCellEditable(int f, int c) {
@@ -20,7 +18,7 @@ public class ListaAlumnos extends javax.swing.JInternalFrame {
         }
     };
 
-    public ListaAlumnos() {
+    public ListaAlumnos1() {
         initComponents();
         armarCabecera();
     }
@@ -37,9 +35,6 @@ public class ListaAlumnos extends javax.swing.JInternalFrame {
         jrInactivos = new javax.swing.JRadioButton();
         jcSort = new javax.swing.JComboBox<>();
         jbSalir = new javax.swing.JButton();
-        jbNuevoAlum = new javax.swing.JButton();
-        jbEditarAlum = new javax.swing.JButton();
-        jbCambiarEstado = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(213, 220, 223));
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(80, 103, 115), 1, true));
@@ -106,37 +101,10 @@ public class ListaAlumnos extends javax.swing.JInternalFrame {
 
         jbSalir.setBackground(new java.awt.Color(80, 103, 115));
         jbSalir.setForeground(new java.awt.Color(213, 220, 223));
-        jbSalir.setText("Salir");
+        jbSalir.setText("Cerrar");
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbSalirActionPerformed(evt);
-            }
-        });
-
-        jbNuevoAlum.setBackground(new java.awt.Color(80, 103, 115));
-        jbNuevoAlum.setForeground(new java.awt.Color(213, 220, 223));
-        jbNuevoAlum.setText("Nuevo Alumno");
-        jbNuevoAlum.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbNuevoAlumActionPerformed(evt);
-            }
-        });
-
-        jbEditarAlum.setBackground(new java.awt.Color(80, 103, 115));
-        jbEditarAlum.setForeground(new java.awt.Color(213, 220, 223));
-        jbEditarAlum.setText("Editar Alumno");
-        jbEditarAlum.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbEditarAlumActionPerformed(evt);
-            }
-        });
-
-        jbCambiarEstado.setBackground(new java.awt.Color(80, 103, 115));
-        jbCambiarEstado.setForeground(new java.awt.Color(213, 220, 223));
-        jbCambiarEstado.setText("Baja/Alta");
-        jbCambiarEstado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbCambiarEstadoActionPerformed(evt);
             }
         });
 
@@ -146,7 +114,7 @@ public class ListaAlumnos extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jrTodos)
                         .addGap(18, 18, 18)
@@ -156,14 +124,10 @@ public class ListaAlumnos extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jcSort, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jbNuevoAlum)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jbEditarAlum)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jbCambiarEstado)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbSalir))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jbSalir, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -178,13 +142,8 @@ public class ListaAlumnos extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbNuevoAlum, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jbSalir)
-                        .addComponent(jbEditarAlum)
-                        .addComponent(jbCambiarEstado)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addComponent(jbSalir)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -224,43 +183,15 @@ public class ListaAlumnos extends javax.swing.JInternalFrame {
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         Object[] op = {"Aceptar", "Cancelar"};
-        int i = JOptionPane.showOptionDialog(this, "Desea salir?", title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, frameIcon, op, "Aceptar");
+        int i = JOptionPane.showOptionDialog(this, "Desea cerrar?", title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, frameIcon, op, "Aceptar");
         if (i == JOptionPane.YES_OPTION) {
             this.dispose();
         }
     }//GEN-LAST:event_jbSalirActionPerformed
 
-    private void jbNuevoAlumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoAlumActionPerformed
-        NewAlumno va = new NewAlumno();
-        va.setVisible(true);
-        Escritorio.escritorio.add(va);
-        va.toFront();
-        Utileria.centrarInternalFrame(Escritorio.escritorio, va);
-    }//GEN-LAST:event_jbNuevoAlumActionPerformed
-
-    private void jbEditarAlumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarAlumActionPerformed
-//        if (jtListaAlum.getSelectedRow() >= 0) {
-            NewAlumnoModificar va = new NewAlumnoModificar();
-            va.setVisible(true);
-            va.setTitle("Modificacion de Alumno");
-            Escritorio.escritorio.add(va);
-            va.toFront();
-            Utileria.centrarInternalFrame(Escritorio.escritorio, va);
-//        } else {
-//            Utileria.mensaje("Seleccione un alumno o fila para modificar");
-//        }
-    }//GEN-LAST:event_jbEditarAlumActionPerformed
-
-    private void jbCambiarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCambiarEstadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbCambiarEstadoActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton jbCambiarEstado;
-    private javax.swing.JButton jbEditarAlum;
-    private javax.swing.JButton jbNuevoAlum;
     private javax.swing.JButton jbSalir;
     private javax.swing.JComboBox<String> jcSort;
     private javax.swing.JRadioButton jrActivos;
