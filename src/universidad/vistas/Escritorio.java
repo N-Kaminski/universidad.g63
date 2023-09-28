@@ -44,6 +44,7 @@ public class Escritorio extends javax.swing.JFrame {
         jmManipNotas = new javax.swing.JMenuItem();
         jmConsultas = new javax.swing.JMenu();
         jmCAlumXMat = new javax.swing.JMenuItem();
+        jmListaAlum = new javax.swing.JMenuItem();
         jmSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -104,6 +105,14 @@ public class Escritorio extends javax.swing.JFrame {
             }
         });
         jmConsultas.add(jmCAlumXMat);
+
+        jmListaAlum.setText("Lista de Alumnos");
+        jmListaAlum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmListaAlumActionPerformed(evt);
+            }
+        });
+        jmConsultas.add(jmListaAlum);
 
         jMenuBar1.add(jmConsultas);
 
@@ -198,6 +207,34 @@ public class Escritorio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jmSalirMouseClicked
 
+<<<<<<< Updated upstream
+=======
+    private void jmListaAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmListaAlumnosActionPerformed
+        ListaAlumnos va = new ListaAlumnos();
+        ImageIcon icono = new ImageIcon(getClass().getResource("/Imagenes/fondo.png"));
+        va.setTitle("Listado de Alumnos");
+        Utileria.fondo(escritorio, va, icono);
+    }//GEN-LAST:event_jmListaAlumnosActionPerformed
+
+    private void jMenuBar1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuBar1MousePressed
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+    }//GEN-LAST:event_jMenuBar1MousePressed
+
+    private void jMenuBar1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuBar1MouseDragged
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xMouse, y - yMouse);
+    }//GEN-LAST:event_jMenuBar1MouseDragged
+
+    private void jmListaAlumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmListaAlumActionPerformed
+        ListaAlumnos1 va = new ListaAlumnos1();
+        ImageIcon icono = new ImageIcon(getClass().getResource("/Imagenes/fondo.png"));
+        va.setTitle("Listado de Alumnos");
+        Utileria.fondo(escritorio, va, icono);
+    }//GEN-LAST:event_jmListaAlumActionPerformed
+
+>>>>>>> Stashed changes
     /**
      * @param args the command line arguments
      */
@@ -241,6 +278,11 @@ public class Escritorio extends javax.swing.JFrame {
     private javax.swing.JMenu jmConsultas;
     private javax.swing.JMenuItem jmFormAlum;
     private javax.swing.JMenuItem jmFormMat;
+<<<<<<< Updated upstream
+=======
+    private javax.swing.JMenuItem jmListaAlum;
+    private javax.swing.JMenuItem jmListaAlumnos;
+>>>>>>> Stashed changes
     private javax.swing.JMenuItem jmManejoIns;
     private javax.swing.JMenuItem jmManipNotas;
     private javax.swing.JMenu jmSalir;
